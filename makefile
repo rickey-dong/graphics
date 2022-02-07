@@ -1,2 +1,2 @@
 default:
-	python3 picmaker.py
+	@python3 picmaker.py
