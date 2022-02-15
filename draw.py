@@ -3,8 +3,8 @@ from display import *
 def draw_line_octant_one(x0, y0, x1, y1, screen, color):
     x = x0
     y = y0
-    A = 2(y1 - y0)
-    B = -2(x1 - x0)
+    A = 2 * (y1 - y0)
+    B = -2 * (x1 - x0)
     d = A + B/2
     while x <= x1:
         plot(screen, color, x, y)
@@ -17,8 +17,8 @@ def draw_line_octant_one(x0, y0, x1, y1, screen, color):
 def draw_line_octant_two(x0, y0, x1, y1, screen, color):
     x = x0
     y = y0
-    A = 2(y1 - y0)
-    B = -2(x1 - x0)
+    A = 2 * (y1 - y0)
+    B = -2 * (x1 - x0)
     d = A/2 + B
     while y <= y1:
         plot(screen, color, x, y)
@@ -31,8 +31,8 @@ def draw_line_octant_two(x0, y0, x1, y1, screen, color):
 def draw_line_octant_seven(x0, y0, x1, y1, screen, color):
     x = x0
     y = y0
-    A = 2(y1 - y0)
-    B = -2(x1 - x0)
+    A = 2 * (y1 - y0)
+    B = -2 * (x1 - x0)
     d = A/2 - B
     while y >= y1:
         plot(screen, color, x, y)
@@ -45,8 +45,8 @@ def draw_line_octant_seven(x0, y0, x1, y1, screen, color):
 def draw_line_octant_eight(x0, y0, x1, y1, screen, color):
     x = x0
     y = y0
-    A = 2(y1 - y0)
-    B = -2(x1 - x0)
+    A = 2 * (y1 - y0)
+    B = -2 * (x1 - x0)
     d = A - B/2
     while x <= x1:
         plot(screen, color, x, y)
