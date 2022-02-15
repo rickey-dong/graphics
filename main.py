@@ -32,7 +32,9 @@ c = [ 0, 255, 0 ]
     # c[GREEN] = 255;
     # draw_line(0, YRES/2, XRES-1, YRES/2, s, c);
     # draw_line(XRES/2, 0, XRES/2, YRES-1, s, c);
-
+c[RED] = 205
+c[GREEN] = 133
+c[BLUE] = 63
 draw_line(0, 20, 500, 20, s, c)
 draw_line(50, 20, 50, 40, s, c)
 draw_line(75, 20, 75, 40, s, c)
@@ -68,6 +70,9 @@ draw_line(400, 140, 400, 220, s, c)
 draw_line(400, 220, 375, 260, s, c)
 draw_line(375, 260, 350, 280, s, c)
 
+c[RED] = 139
+c[GREEN] = 69
+c[BLUE] = 19
 draw_line(400, 180, 450, 240, s, c)
 draw_line(400, 220, 425, 240, s, c)
 draw_line(425, 240, 425, 400, s, c)
@@ -78,6 +83,9 @@ draw_line(475, 380, 475, 400, s, c)
 draw_line(475, 400, 450, 420, s, c)
 draw_line(450, 420, 425, 400, s, c)
 
+c[RED] = 255
+c[GREEN] = 0
+c[BLUE] = 0
 draw_line(350, 280, 350, 300, s, c)
 draw_line(350, 300, 375, 280, s, c)
 draw_line(375, 280, 375, 340, s, c)
@@ -116,6 +124,44 @@ draw_line(275, 240, 275, 260, s, c)
 draw_line(275, 240, 325, 280, s, c)
 draw_line(325, 240, 325, 280, s, c)
 draw_line(325, 240, 350, 280, s, c)
+
+c[RED] = 255
+c[GREEN] = 140
+c[BLUE] = 0
+draw_line(125, 320, 125, 400, s, c)
+draw_line(125, 400, 175, 420, s, c)
+draw_line(175, 420, 275, 420, s, c)
+draw_line(275, 420, 325, 400, s, c)
+draw_line(325, 320, 325, 400, s, c)
+draw_line(325, 320, 275, 300, s, c)
+draw_line(275, 300, 175, 300, s, c)
+draw_line(175, 300, 125, 320, s, c)
+
+draw_line(150, 440, 150, 460, s, c)
+draw_line(150, 460, 175, 460, s, c)
+draw_line(175, 460, 200, 440, s, c)
+
+draw_line(300, 440, 300, 460, s, c)
+draw_line(300, 460, 275, 460, s, c)
+draw_line(275, 460, 250, 440, s, c)
+
+draw_line(175, 380, 175, 400, s, c)
+draw_line(175, 400, 200, 400, s, c)
+draw_line(200, 380, 200, 400, s, c)
+draw_line(200, 380, 175, 380, s, c)
+
+draw_line(250, 380, 250, 400, s, c)
+draw_line(250, 400, 275, 400, s, c)
+draw_line(275, 380, 275, 400, s, c)
+draw_line(275, 380, 250, 380, s, c)
+
+draw_line(200, 360, 250, 360, s, c)
+draw_line(200, 360, 225, 340, s, c)
+draw_line(250, 360, 225, 340, s, c)
+draw_line(225, 320, 225, 340, s, c)
+draw_line(200, 320, 250, 320, s, c)
+draw_line(200, 320, 175, 340, s, c)
+draw_line(250, 320, 275, 340, s, c)
 
 display(s)
 save_ppm(s, 'binary.ppm')
