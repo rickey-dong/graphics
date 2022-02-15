@@ -28,6 +28,21 @@ def draw_line_octant_two(x0, y0, x1, y1, screen, color):
         y += 1
         d += B
 
+def draw_line_octant_seven(x0, y0, x1, y1, screen, color):
+    x = x0
+    y = y0
+    A = 2(y1 - y0)
+    B = -2(x1 - x0)
+    d = A/2 - B
+    while y >= y1:
+        plot(screen, color, x, y)
+        if d < 0:
+            x += 1
+            d += A
+        y -= 1
+        d += B
+
+
 def draw_line( x0, y0, x1, y1, screen, color ):
     # if second pixel's x-cor is < first pixel's x-cor, swap coords
     # so that we draw from left to right
