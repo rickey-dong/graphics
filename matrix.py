@@ -12,7 +12,17 @@ import math
 #print the matrix such that it looks like
 #the template in the top comment
 def print_matrix( matrix ):
-    pass
+    # [ [x0, y0, z0, 1], [x1, y1, z1, 1], [x2, y2, z2, 1] ]
+    string_representation = ""
+    row = 0
+    while row < 4:
+        for point in range(len(matrix)):
+            string_representation += str(matrix[point][row])
+            if point != len(matrix) - 1:
+                string_representation += " "
+        string_representation += '\n'
+        row += 1
+    print(string_representation)
 
 #turn the paramter matrix into an identity matrix
 #you may assume matrix is square
