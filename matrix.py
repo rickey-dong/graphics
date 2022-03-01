@@ -17,7 +17,7 @@ def print_matrix( matrix ):
     row = 0
     while row < 4:
         for point in range(len(matrix)):
-            string_representation += str(matrix[point][row])
+            string_representation += str(float(matrix[point][row]))
             if point != len(matrix) - 1:
                 string_representation += " "
         string_representation += '\n'
