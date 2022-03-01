@@ -50,4 +50,4 @@ add_edge(edges, 200, 340, 0, 200, 320, 0)
 
 draw_lines( edges, screen, color )
 save_extension(screen, "bob.png")
-display(screen)
+#display(screen)
