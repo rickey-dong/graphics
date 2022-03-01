@@ -45,9 +45,9 @@ def new_matrix(rows = 4, cols = 4):
 #multiply m1 by m2, modifying m2 to be the product
 #m1 * m2 -> m2
 def matrix_mult( m1, m2 ):
-    product_matrix = new_matrix(4, len(m2[0]))
-    for rows in range(4):
-        for cols in range(len(m2[0])):
+    product_matrix = new_matrix(4, len(m2))
+    for rows in range(len(m2)):
+        for cols in range(4):
             for addend in range(4):
-                product_matrix[rows][cols] += m1[rows][addend] * m2[addend][cols]
-    m2 = product_matrix[:]
+                product_matrix[rows][cols] += m1[addend][cols] * m2[rows][addend]
+    m2[:] = product_matrix
