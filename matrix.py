@@ -34,25 +34,6 @@ def ident( matrix ):
             else:
                 matrix[row][col] = 0
 
-#multiply m1 by m2, modifying m2 to be the product
-#m1 * m2 -> m2
-def matrix_mult( m1, m2 ):
-    product_matrix = []
-    for matrix_col in range(len(m2)):
-        product_matrix.append([])
-        for matrix_row in range(len(m1[0])):
-            value = 0
-            m2_coefficients = m2[matrix_col][:]
-            m1_coefficients = []
-            for row in range(len(m1)):
-                m1_coefficients.append(m1[row][matrix_row]) ###
-            for element in range(len(m2_coefficients)):
-                value += (m1_coefficients[element] * m2_coefficients[element])
-            product_matrix[matrix_col].append(value)
-
-
-
-
 def new_matrix(rows = 4, cols = 4):
     m = []
     for c in range( cols ):
@@ -60,3 +41,13 @@ def new_matrix(rows = 4, cols = 4):
         for r in range( rows ):
             m[c].append( 0 )
     return m
+
+#multiply m1 by m2, modifying m2 to be the product
+#m1 * m2 -> m2
+def matrix_mult( m1, m2 ):
+    product_matrix = new_matrix(4, len(m2[0]))
+    for rows in range(4):
+        for cols in range(len(m2[0])):
+            for addend in range(4):
+                product_matrix[rows][cols] += m1[rows][addend] * m2[addend][cols]
+    m2 = product_matrix[:]
