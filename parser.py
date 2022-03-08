@@ -41,7 +41,14 @@ def parse_file( fname, points, transform, screen, color ):
         if not instr:
             break
         if instr == "line":
-            pass
+            two_points = instruction_script.readline().strip().split()
+            x0 = int(two_points[0])
+            y0 = int(two_points[1])
+            z0 = int(two_points[2])
+            x1 = int(two_points[3])
+            y1 = int(two_points[4])
+            z1 = int(two_points[5])
+            add_edge(points, x0, y0, z0, x1, y1, z1)
         elif instr == "ident":
             ident(transform)
         elif instr == "scale":
