@@ -67,7 +67,18 @@ def parse_file( fname, points, transform, screen, color ):
             translate_matrix = make_translate(tx, ty, tz)
             matrix_mult(translate_matrix, transform)
         elif instr == "rotate":
-            pass
+            axis_and_theta = instruction_script.readline().strip().split()
+            degrees = int(axis_and_theta[1])
+            axis = axis_and_theta[0]
+            if axis == "x":
+                  rotation_matrix = make_rotX(degrees)
+                  matrix_mult(rotation_matrix, transform)
+            elif axis == "y":
+                  rotation_matrix = make_rotY(degrees)
+                  matrix_mult(rotation_matrix, transform)
+            elif axis == "z":
+                  rotation_matrix = make_rotZ(degrees)
+                  matrix_mult(rotation_matrix, transform)
         elif instr == "apply":
             matrix_mult(transform, points)
         elif instr == "display":
