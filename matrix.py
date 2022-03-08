@@ -42,7 +42,12 @@ def make_scale( x, y, z ):
 def make_rotX( theta ):
     rotation_xaxis_matrix = new_matrix()
     ident(rotation_xaxis_matrix)
-    # theta_in_radians = 
+    theta_in_radians = theta * (math.pi / 180)
+    rotation_xaxis_matrix[1][1] = math.cos(theta_in_radians)
+    rotation_xaxis_matrix[1][2] = math.sin(theta_in_radians)
+    rotation_xaxis_matrix[2][1] = (-1) * math.sin(theta_in_radians)
+    rotation_xaxis_matrix[2][2] = math.cos(theta_in_radians)
+    return rotation_xaxis_matrix
 
 def make_rotY( theta ):
     pass
