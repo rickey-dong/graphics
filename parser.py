@@ -1,3 +1,4 @@
+from matplotlib import scale
 from display import *
 from matrix import *
 from draw import *
@@ -52,7 +53,12 @@ def parse_file( fname, points, transform, screen, color ):
         elif instr == "ident":
             ident(transform)
         elif instr == "scale":
-            pass
+            scale_factors = instruction_script.readline().strip().split()
+            sx = int(scale_factors[0])
+            sy = int(scale_factors[1])
+            sz = int(scale_factors[2])
+            scale_matrix = make_scale(sx, sy, sz)
+            matrix_mult(scale_matrix, transform)
         elif instr == "translate":
             pass
         elif instr == "rotate":
