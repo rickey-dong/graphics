@@ -60,7 +60,12 @@ def parse_file( fname, points, transform, screen, color ):
             scale_matrix = make_scale(sx, sy, sz)
             matrix_mult(scale_matrix, transform)
         elif instr == "translate":
-            pass
+            translation_factors = instruction_script.readline().strip().split()
+            tx = int(translation_factors[0])
+            ty = int(translation_factors[1])
+            tz = int(translation_factors[2])
+            translate_matrix = make_translate(tx, ty, tz)
+            matrix_mult(translate_matrix, transform)
         elif instr == "rotate":
             pass
         elif instr == "apply":
