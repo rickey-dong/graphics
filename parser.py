@@ -1,4 +1,3 @@
-from matplotlib import scale
 from display import *
 from matrix import *
 from draw import *
@@ -59,7 +58,7 @@ def parse_file( fname, points, transform, screen, color ):
             sz = int(scale_factors[2])
             scale_matrix = make_scale(sx, sy, sz)
             matrix_mult(scale_matrix, transform)
-        elif instr == "translate":
+        elif instr == "move":
             translation_factors = instruction_script.readline().strip().split()
             tx = int(translation_factors[0])
             ty = int(translation_factors[1])
@@ -89,6 +88,6 @@ def parse_file( fname, points, transform, screen, color ):
             name_of_file = instruction_script.readline().strip().split()
             clear_screen(screen)
             draw_lines(points, screen, color)
-            save_extension(screen, name_of_file)
+            save_ppm(screen, name_of_file[0])
         elif instr == "quit":
             break
