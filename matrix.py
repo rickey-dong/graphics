@@ -24,7 +24,21 @@ def make_translate( x, y, z ):
     return translation_matrix
 
 def make_scale( x, y, z ):
-    pass
+    dilation_matrix = new_matrix()
+    ident(dilation_matrix)
+    element = 0
+    for row in range(len(dilation_matrix[0])):
+        for col in range(len(dilation_matrix)):
+            if row == col:
+                if element == 0:
+                    dilation_matrix[row][col] = x
+                if element == 1:
+                    dilation_matrix[row][col] = y
+                if element == 2:
+                    dilation_matrix[row][col] = z
+                element += 1
+    return dilation_matrix
+
 
 def make_rotX( theta ):
     pass
