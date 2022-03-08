@@ -88,6 +88,6 @@ def parse_file( fname, points, transform, screen, color ):
             name_of_file = instruction_script.readline().strip().split()
             clear_screen(screen)
             draw_lines(points, screen, color)
-            save_ppm(screen, name_of_file[0])
+            save_extension(screen, name_of_file[0])
         elif instr == "quit":
             break
