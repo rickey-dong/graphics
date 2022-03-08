@@ -60,7 +60,14 @@ def make_rotY( theta ):
     return rotation_yaxis_matrix
 
 def make_rotZ( theta ):
-    pass
+    rotation_zaxis_matrix = new_matrix()
+    ident(rotation_zaxis_matrix)
+    theta_in_radians = theta * (math.pi / 180)
+    rotation_zaxis_matrix[0][0] = math.cos(theta_in_radians)
+    rotation_zaxis_matrix[0][1] = math.sin(theta_in_radians)
+    rotation_zaxis_matrix[1][0] = (-1) * math.sin(theta_in_radians)
+    rotation_zaxis_matrix[1][1] = math.cos(theta_in_radians)
+    return rotation_zaxis_matrix
 
 #print the matrix such that it looks like
 #the template in the top comment
