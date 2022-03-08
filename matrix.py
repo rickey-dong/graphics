@@ -39,7 +39,6 @@ def make_scale( x, y, z ):
                 element += 1
     return dilation_matrix
 
-
 def make_rotX( theta ):
     pass
 
