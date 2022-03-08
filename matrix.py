@@ -40,7 +40,9 @@ def make_scale( x, y, z ):
     return dilation_matrix
 
 def make_rotX( theta ):
-    pass
+    rotation_xaxis_matrix = new_matrix()
+    ident(rotation_xaxis_matrix)
+    # theta_in_radians = 
 
 def make_rotY( theta ):
     pass
