@@ -40,22 +40,21 @@ def parse_file( fname, points, transform, screen, color ):
         instr = instr.strip()
         if not instr:
             break
-        if " " not in instr:
-            if instr == "line":
-                pass
-            elif instr == "ident":
-                pass
-            elif instr == "scale":
-                pass
-            elif instr == "translate":
-                pass
-            elif instr == "rotate":
-                pass
-            elif instr == "apply":
-                pass
-            elif instr == "display":
-                pass
-            elif instr == "save":
-                pass
-            elif instr == "quit":
-                break
+        if instr == "line":
+            pass
+        elif instr == "ident":
+            ident(transform)
+        elif instr == "scale":
+            pass
+        elif instr == "translate":
+            pass
+        elif instr == "rotate":
+            pass
+        elif instr == "apply":
+            matrix_mult(transform, points)
+        elif instr == "display":
+            pass
+        elif instr == "save":
+            pass
+        elif instr == "quit":
+            break
