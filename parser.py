@@ -53,7 +53,9 @@ def parse_file( fname, points, transform, screen, color ):
         elif instr == "apply":
             matrix_mult(transform, points)
         elif instr == "display":
-            pass
+            clear_screen(screen)
+            draw_lines(points, screen, color)
+            display(screen)
         elif instr == "save":
             pass
         elif instr == "quit":
