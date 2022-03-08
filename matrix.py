@@ -50,7 +50,14 @@ def make_rotX( theta ):
     return rotation_xaxis_matrix
 
 def make_rotY( theta ):
-    pass
+    rotation_yaxis_matrix = new_matrix()
+    ident(rotation_yaxis_matrix)
+    theta_in_radians = theta * (math.pi / 180)
+    rotation_yaxis_matrix[0][0] = math.cos(theta_in_radians)
+    rotation_yaxis_matrix[0][2] = (-1) * math.sin(theta_in_radians)
+    rotation_yaxis_matrix[2][0] = math.sin(theta_in_radians)
+    rotation_yaxis_matrix[2][2] = math.cos(theta_in_radians)
+    return rotation_yaxis_matrix
 
 def make_rotZ( theta ):
     pass
