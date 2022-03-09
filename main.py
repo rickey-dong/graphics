@@ -9,3 +9,6 @@ edges = []
 transform = new_matrix()
 
 parse_file( 'script', edges, transform, screen, color )
+
+# color = [ 0, 0, 0 ]
+# parse_file('transformasian', edges, transform, screen, color)
