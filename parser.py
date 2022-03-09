@@ -42,32 +42,32 @@ def parse_file( fname, points, transform, screen, color ):
             break
         if instr == "line":
             two_points = instruction_script.readline().strip().split()
-            x0 = int(two_points[0])
-            y0 = int(two_points[1])
-            z0 = int(two_points[2])
-            x1 = int(two_points[3])
-            y1 = int(two_points[4])
-            z1 = int(two_points[5])
+            x0 = float(two_points[0])
+            y0 = float(two_points[1])
+            z0 = float(two_points[2])
+            x1 = float(two_points[3])
+            y1 = float(two_points[4])
+            z1 = float(two_points[5])
             add_edge(points, x0, y0, z0, x1, y1, z1)
         elif instr == "ident":
             ident(transform)
         elif instr == "scale":
             scale_factors = instruction_script.readline().strip().split()
-            sx = int(scale_factors[0])
-            sy = int(scale_factors[1])
-            sz = int(scale_factors[2])
+            sx = float(scale_factors[0])
+            sy = float(scale_factors[1])
+            sz = float(scale_factors[2])
             scale_matrix = make_scale(sx, sy, sz)
             matrix_mult(scale_matrix, transform)
         elif instr == "move":
             translation_factors = instruction_script.readline().strip().split()
-            tx = int(translation_factors[0])
-            ty = int(translation_factors[1])
-            tz = int(translation_factors[2])
+            tx = float(translation_factors[0])
+            ty = float(translation_factors[1])
+            tz = float(translation_factors[2])
             translate_matrix = make_translate(tx, ty, tz)
             matrix_mult(translate_matrix, transform)
         elif instr == "rotate":
             axis_and_theta = instruction_script.readline().strip().split()
-            degrees = int(axis_and_theta[1])
+            degrees = float(axis_and_theta[1])
             axis = axis_and_theta[0]
             if axis == "x":
                   rotation_matrix = make_rotX(degrees)
