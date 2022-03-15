@@ -3,11 +3,12 @@ from matrix import *
 
 
 def add_circle( points, cx, cy, cz, r, step ):
-    # for time from 0 to 1 going step:
-    #     x = rcos(2pi*t) + cx
-    #     y = rsin(2pi*t) + cy
-    #     add_point(x, y)
-    pass
+    time = 0
+    while time <= 1:
+        x = r * math.cos(2*math.pi * time) + cx
+        y = r * math.sin(2*math.pi * time) + cy
+        add_point(points, x, y)
+        time += step
 
 def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
     # if curve type is hermite:
