@@ -3,6 +3,10 @@ from matrix import *
 
 
 def add_circle( points, cx, cy, cz, r, step ):
+    # for time from 0 to 1 going step:
+    #     x = rcos(2pi*t) + cx
+    #     y = rsin(2pi*t) + cy
+    #     add_point(x, y)
     pass
 
 def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
