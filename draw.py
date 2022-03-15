@@ -22,16 +22,16 @@ def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
         time = 0
         while time <= 1:
             x_coord = (
-                (all_four_coeffs[0][0] * (time ** 3)) +
-                (all_four_coeffs[0][1] * (time ** 2)) +
-                (all_four_coeffs[0][2] * (time)) +
-                (all_four_coeffs[0][3])
+                (all_four_coeffs[0][0][0] * (time ** 3)) +
+                (all_four_coeffs[0][0][1] * (time ** 2)) +
+                (all_four_coeffs[0][0][2] * (time)) +
+                (all_four_coeffs[0][0][3])
             )
             y_coord = (
-                (all_four_coeffs[1][0] * (time ** 3)) +
-                (all_four_coeffs[1][1] * (time ** 2)) +
-                (all_four_coeffs[1][2] * (time)) +
-                (all_four_coeffs[1][3])
+                (all_four_coeffs[1][0][0] * (time ** 3)) +
+                (all_four_coeffs[1][0][1] * (time ** 2)) +
+                (all_four_coeffs[1][0][2] * (time)) +
+                (all_four_coeffs[1][0][3])
             )
             add_point(points, x_coord, y_coord)
             time += step
@@ -39,16 +39,16 @@ def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
         time = 0
         while time <= 1:
             x_coord = (
-                (all_four_coeffs[2][0] * (time ** 3)) +
-                (all_four_coeffs[2][1] * (time ** 2)) +
-                (all_four_coeffs[2][2] * (time)) +
-                (all_four_coeffs[2][3])
+                (all_four_coeffs[2][0][0] * (time ** 3)) +
+                (all_four_coeffs[2][0][1] * (time ** 2)) +
+                (all_four_coeffs[2][0][2] * (time)) +
+                (all_four_coeffs[2][0][3])
             )
             y_coord = (
-                (all_four_coeffs[3][0] * (time ** 3)) +
-                (all_four_coeffs[3][1] * (time ** 2)) +
-                (all_four_coeffs[3][2] * (time)) +
-                (all_four_coeffs[3][3])
+                (all_four_coeffs[3][0][0] * (time ** 3)) +
+                (all_four_coeffs[3][0][1] * (time ** 2)) +
+                (all_four_coeffs[3][0][2] * (time)) +
+                (all_four_coeffs[3][0][3])
             )
             add_point(points, x_coord, y_coord)
             time += step
