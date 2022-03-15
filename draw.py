@@ -11,21 +11,47 @@ def add_circle( points, cx, cy, cz, r, step ):
         time += step
 
 def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
-    # if curve type is hermite:
-    #     H^-1 * G_x = coefficients_x
-    #     H^-1 * G_y = coefficients_y
-    #     for time from 0 to 1 going step:
-    #         x = axt^3 ...
-    #         y = ayt^3 ...
-    #         add_point(x, y)
-    # else:
-    #     B * G_x = coefficients_x
-    #     B * G_y = coefficients_y
-    #     for time from 0 to 1 going step:
-    #         x = axt^3 ...
-    #         y = ayt^3 ...
-    #         add_point(x, y)
-    pass
+    all_four_coeffs = generate_curve_coefs([x0, y0], [x1, y1], [x2, y2], [x3, y3], 0)
+    # [
+    #   [ax, bx, cx, dx] # hermite
+    #   [ay, by, cy, dy]
+    #   [ax, bx, cx, dx] # bezier
+    #   [ay, by, cy, dy]
+    # ]
+    if curve_type == 'hermite':
+        time = 0
+        while time <= 1:
+            x_coord = (
+                (all_four_coeffs[0][0] * (time ** 3)) +
+                (all_four_coeffs[0][1] * (time ** 2)) +
+                (all_four_coeffs[0][2] * (time)) +
+                (all_four_coeffs[0][3])
+            )
+            y_coord = (
+                (all_four_coeffs[1][0] * (time ** 3)) +
+                (all_four_coeffs[1][1] * (time ** 2)) +
+                (all_four_coeffs[1][2] * (time)) +
+                (all_four_coeffs[1][3])
+            )
+            add_point(points, x_coord, y_coord)
+            time += step
+    else:
+        time = 0
+        while time <= 1:
+            x_coord = (
+                (all_four_coeffs[2][0] * (time ** 3)) +
+                (all_four_coeffs[2][1] * (time ** 2)) +
+                (all_four_coeffs[2][2] * (time)) +
+                (all_four_coeffs[2][3])
+            )
+            y_coord = (
+                (all_four_coeffs[3][0] * (time ** 3)) +
+                (all_four_coeffs[3][1] * (time ** 2)) +
+                (all_four_coeffs[3][2] * (time)) +
+                (all_four_coeffs[3][3])
+            )
+            add_point(points, x_coord, y_coord)
+            time += step
 
 
 def draw_lines( matrix, screen, color ):
