@@ -28,7 +28,17 @@ def make_hermite():
     return hermite_curve_matrix
 
 def generate_curve_coefs( p0, p1, p2, p3, t ):
-    pass
+    G_x_hermite = [p0[0], p1[0], p2[0], p3[0]]
+    G_y_hermite = [p0[1], p1[1], p2[1], p3[1]]
+    G_x_bezier = G_x_hermite.copy()
+    G_y_bezier = G_y_hermite.copy()
+    hcm = make_hermite()
+    matrix_mult(hcm, G_x_hermite)
+    matrix_mult(hcm, G_y_hermite)
+    bcm = make_bezier()
+    matrix_mult(bcm, G_x_bezier)
+    matrix_mult(bcm, G_y_bezier)
+    return [G_x_hermite, G_y_hermite, G_x_bezier, G_y_bezier]
 
 
 def make_translate( x, y, z ):
