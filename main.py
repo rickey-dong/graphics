@@ -10,3 +10,5 @@ edges = []
 transform = new_matrix()
 
 parse_file( 'script', edges, transform, screen, color )
+# color = [0, 0, 0]
+# parse_file('curve_stomp_script', edges, transform, screen, color)
