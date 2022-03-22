@@ -29,7 +29,7 @@ def generate_sphere( points, cx, cy, cz, r, step ):
             x = r * math.cos(math.pi * circle) + cx
             y = r * math.sin(math.pi * circle) * cos((math.pi * 2) * rotation) + cy
             z = r * math.sin(math.pi * circle) * math.sin((math.pi * 2) * rotation) + cz
-            generated_points.append(x, y, z, 1)
+            generated_points.append([x, y, z, 1])
     return generated_points
 
   # ====================
@@ -39,7 +39,9 @@ def generate_sphere( points, cx, cy, cz, r, step ):
   # necessary points
   # ====================
 def add_sphere( points, cx, cy, cz, r, step ):
-    pass
+    g_p = generate_sphere(points, cx, cy, cz, r, step)
+    for sphere_point in g_p:
+        points.append(sphere_point)
 
 
   # ====================
