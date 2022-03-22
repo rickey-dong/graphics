@@ -24,12 +24,17 @@ def add_box( points, x, y, z, width, height, depth ):
   # ====================
 def generate_sphere( points, cx, cy, cz, r, step ):
     generated_points = []
-    for rotation in range(0, 1, step):
-        for circle in range(0, 1, step):
+    rotation = 0
+    while rotation < 1:
+        circle = 0
+        while circle < 1:
             x = r * math.cos(math.pi * circle) + cx
-            y = r * math.sin(math.pi * circle) * cos((math.pi * 2) * rotation) + cy
+            y = r * math.sin(math.pi * circle) * math.cos((math.pi * 2) * rotation) + cy
             z = r * math.sin(math.pi * circle) * math.sin((math.pi * 2) * rotation) + cz
             generated_points.append([x, y, z, 1])
+            generated_points.append([x+1, y, z, 1]) # just a pixel away from it to make it like dots
+            circle += step
+        rotation += step
     return generated_points
 
   # ====================
