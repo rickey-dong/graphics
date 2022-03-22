@@ -9,12 +9,39 @@ from matrix import *
 def add_box( points, x, y, z, width, height, depth ):
     points.append([x, y, z, 1])
     points.append([x + width, y, z, 1])
+
+    points.append([x, y, z, 1])
+    points.append([x, y - height, z, 1])
+
     points.append([x, y - height, z, 1])
     points.append([x + width, y - height, z, 1])
-    points.append([x, y, z + depth, 1])
-    points.append([x + width, y, z + depth, 1])
-    points.append([x, y - height, z + depth, 1])
-    points.append([x + width, y - height, z + depth, 1])
+
+    points.append([x + width, y - height, z, 1])
+    points.append([x + width, y, z, 1])
+
+    points.append([x, y - height, z, 1])
+    points.append([x, y - height, z - depth, 1])
+    
+    points.append([x + width, y - height, z, 1])
+    points.append([x + width, y - height, z - depth, 1])
+
+    points.append([x + width, y, z, 1])
+    points.append([x + width, y, z - depth, 1])
+    
+    points.append([x, y, z, 1])
+    points.append([x, y, z - depth, 1])
+
+    points.append([x, y, z - depth, 1])
+    points.append([x, y - height, z - depth, 1])
+
+    points.append([x, y, z - depth, 1])
+    points.append([x + width, y, z - depth, 1])
+    
+    points.append([x, y - height, z - depth, 1])
+    points.append([x + width, y - height, z - depth, 1])
+
+    points.append([x + width, y - height, z - depth, 1])
+    points.append([x + width, y, z - depth, 1])
 
   # ====================
   # Generates all the points along the surface
