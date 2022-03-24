@@ -11,3 +11,4 @@ transform = new_matrix()
 
 
 parse_file( 'face_script', edges, transform, screen, color )
+# parse_file( 'gallery_1', edges, transform, screen, color )
