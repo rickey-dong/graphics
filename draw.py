@@ -12,8 +12,10 @@ def add_polygon( polygons, x0, y0, z0, x1, y1, z1, x2, y2, z2 ):
     )
 
 def draw_polygons( polygons, screen, color ):
-    pass
-
+    for triangle in polygons:
+        draw_line(triangle[0][0], triangle[0][1], triangle[1][0], triangle[1][1], screen, color)
+        draw_line(triangle[1][0], triangle[1][1], triangle[2][0], triangle[2][1], screen, color)
+        draw_line(triangle[2][0], triangle[2][1], triangle[0][0], triangle[0][1], screen, color)
 
 def add_box( polygons, x, y, z, width, height, depth ):
     x1 = x + width
