@@ -22,23 +22,92 @@ def add_box( polygons, x, y, z, width, height, depth ):
     y1 = y - height
     z1 = z - depth
 
-    #front
-    add_edge(polygons, x, y, z, x1, y, z)
-    add_edge(polygons, x, y1, z, x1, y1, z)
-    add_edge(polygons, x1, y, z, x1, y1, z)
-    add_edge(polygons, x, y, z, x, y1, z)
+    vertex_a = [x, y, z, 1]
+    vertex_b = [x1, y, z, 1]
+    vertex_c = [x, y1, z, 1]
+    vertex_d = [x1, y1, z, 1]
+    vertex_e = [x, y, z1, 1]
+    vertex_f = [x1, y, z1, 1]
+    vertex_g = [x, y1, z1, 1]
+    vertex_h = [x1, y1, z1, 1]
 
-    #back
-    add_edge(polygons, x, y, z1, x1, y, z1)
-    add_edge(polygons, x, y1, z1, x1, y1, z1)
-    add_edge(polygons, x1, y, z1, x1, y1, z1)
-    add_edge(polygons, x, y, z1, x, y1, z1)
+    add_polygon(
+        polygons, 
+        vertex_a[0], vertex_a[1], vertex_a[2],
+        vertex_c[0], vertex_c[1], vertex_c[2],
+        vertex_b[0], vertex_b[1], vertex_b[2],
+    )
+    add_polygon(
+        polygons,
+        vertex_c[0], vertex_c[1], vertex_c[2],
+        vertex_d[0], vertex_d[1], vertex_d[2],
+        vertex_b[0], vertex_b[1], vertex_b[2]
+    )
 
-    #sides
-    add_edge(polygons, x, y, z, x, y, z1)
-    add_edge(polygons, x1, y, z, x1, y, z1)
-    add_edge(polygons, x, y1, z, x, y1, z1)
-    add_edge(polygons, x1, y1, z, x1, y1, z1)
+    add_polygon(
+        polygons, 
+        vertex_b[0], vertex_b[1], vertex_b[2],
+        vertex_d[0], vertex_d[1], vertex_d[2],
+        vertex_f[0], vertex_f[1], vertex_f[2],
+    )
+    add_polygon(
+        polygons,
+        vertex_d[0], vertex_d[1], vertex_d[2],
+        vertex_h[0], vertex_h[1], vertex_h[2],
+        vertex_f[0], vertex_f[1], vertex_f[2]
+    )
+
+    add_polygon(
+        polygons, 
+        vertex_e[0], vertex_e[1], vertex_e[2],
+        vertex_g[0], vertex_g[1], vertex_g[2],
+        vertex_f[0], vertex_f[1], vertex_f[2],
+    )
+    add_polygon(
+        polygons,
+        vertex_g[0], vertex_g[1], vertex_g[2],
+        vertex_h[0], vertex_h[1], vertex_h[2],
+        vertex_f[0], vertex_f[1], vertex_f[2]
+    )
+
+    add_polygon(
+        polygons, 
+        vertex_a[0], vertex_a[1], vertex_a[2],
+        vertex_c[0], vertex_c[1], vertex_c[2],
+        vertex_e[0], vertex_e[1], vertex_e[2],
+    )
+    add_polygon(
+        polygons,
+        vertex_c[0], vertex_c[1], vertex_c[2],
+        vertex_g[0], vertex_g[1], vertex_g[2],
+        vertex_e[0], vertex_e[1], vertex_e[2]
+    )
+
+    add_polygon(
+        polygons,
+        vertex_e[0], vertex_e[1], vertex_e[2],
+        vertex_a[0], vertex_a[1], vertex_a[2],
+        vertex_f[0], vertex_f[1], vertex_f[2],
+    )
+    add_polygon(
+        polygons,
+        vertex_a[0], vertex_a[1], vertex_a[2],
+        vertex_b[0], vertex_b[1], vertex_b[2],
+        vertex_f[0], vertex_f[1], vertex_f[2]
+    )
+
+    add_polygon(
+        polygons, 
+        vertex_g[0], vertex_g[1], vertex_g[2],
+        vertex_c[0], vertex_c[1], vertex_c[2],
+        vertex_h[0], vertex_h[1], vertex_h[2],
+    )
+    add_polygon(
+        polygons,
+        vertex_c[0], vertex_c[1], vertex_c[2],
+        vertex_d[0], vertex_d[1], vertex_d[2],
+        vertex_h[0], vertex_h[1], vertex_h[2]
+    )
 
 def add_sphere(polygons, cx, cy, cz, r, steps ):
     points = generate_sphere(cx, cy, cz, r, steps)
