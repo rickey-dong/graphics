@@ -136,6 +136,9 @@ def add_sphere(polygons, cx, cy, cz, r, steps ):
     for lat in range(lat_start, lat_stop):
         for longt in range(longt_start, longt_stop+1):
             index = lat * steps + longt
+            print(index)
+            print(len(points), "LENGTHOF POINTS")
+            print(num_of_points_per_semicircle, "NUM OF POINTS PER SEM")
             if longt != longt_start and longt != longt_stop:
                 add_polygon(
                     polygons,
@@ -161,19 +164,19 @@ def add_sphere(polygons, cx, cy, cz, r, steps ):
                     points[index+num_of_points_per_semicircle][1],
                     points[index+num_of_points_per_semicircle][2]
                 )
-            else:
-                add_polygon(
-                    polygons,
-                    points[index][0],
-                    points[index][1],
-                    points[index][2],
-                    points[index+1][0],
-                    points[index+1][1],
-                    points[index+1][2],
-                    points[index+num_of_points_per_semicircle+1][0],
-                    points[index+num_of_points_per_semicircle+1][1],
-                    points[index+num_of_points_per_semicircle+1][2]
-                )
+            # else:
+            #     add_polygon(
+            #         polygons,
+            #         points[index][0],
+            #         points[index][1],
+            #         points[index][2],
+            #         points[index+1][0],
+            #         points[index+1][1],
+            #         points[index+1][2],
+            #         points[index+num_of_points_per_semicircle+1][0],
+            #         points[index+num_of_points_per_semicircle+1][1],
+            #         points[index+num_of_points_per_semicircle+1][2]
+            #     )
 
 def generate_sphere( cx, cy, cz, r, steps ):
     points = []
