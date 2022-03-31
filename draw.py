@@ -14,20 +14,20 @@ def draw_polygons( polygons, screen, color ):
 
     point = 0
     while point < len(polygons) - 2:
-        draw_line( polygons[point][0],
-                   polygons[point][1],
-                   polygons[point+1][0],
-                   polygons[point+1][1],
+        draw_line( int(polygons[point][0]),
+                   int(polygons[point][1]),
+                   int(polygons[point+1][0]),
+                   int(polygons[point+1][1]),
                    screen, color )
-        draw_line( polygons[point+1][0],
-                   polygons[point+1][1],
-                   polygons[point+2][0],
-                   polygons[point+2][1],
+        draw_line( int(polygons[point+1][0]),
+                   int(polygons[point+1][1]),
+                   int(polygons[point+2][0]),
+                   int(polygons[point+2][1]),
                    screen, color )
-        draw_line( polygons[point+2][0],
-                   polygons[point+2][1],
-                   polygons[point][0],
-                   polygons[point][1],
+        draw_line( int(polygons[point+2][0]),
+                   int(polygons[point+2][1]),
+                   int(polygons[point][0]),
+                   int(polygons[point][1]),
                    screen, color )
         point += 3
 
@@ -74,27 +74,27 @@ def add_box( polygons, x, y, z, width, height, depth ):
     add_polygon(
         polygons, 
         vertex_e[0], vertex_e[1], vertex_e[2],
-        vertex_g[0], vertex_g[1], vertex_g[2],
         vertex_f[0], vertex_f[1], vertex_f[2],
+        vertex_g[0], vertex_g[1], vertex_g[2]
     )
     add_polygon(
         polygons,
         vertex_g[0], vertex_g[1], vertex_g[2],
-        vertex_h[0], vertex_h[1], vertex_h[2],
-        vertex_f[0], vertex_f[1], vertex_f[2]
+        vertex_f[0], vertex_f[1], vertex_f[2],
+        vertex_h[0], vertex_h[1], vertex_h[2]
     )
 
     add_polygon(
         polygons, 
         vertex_a[0], vertex_a[1], vertex_a[2],
-        vertex_c[0], vertex_c[1], vertex_c[2],
         vertex_e[0], vertex_e[1], vertex_e[2],
+        vertex_c[0], vertex_c[1], vertex_c[2]
     )
     add_polygon(
         polygons,
         vertex_c[0], vertex_c[1], vertex_c[2],
-        vertex_g[0], vertex_g[1], vertex_g[2],
-        vertex_e[0], vertex_e[1], vertex_e[2]
+        vertex_e[0], vertex_e[1], vertex_e[2],
+        vertex_g[0], vertex_g[1], vertex_g[2]
     )
 
     add_polygon(
@@ -113,14 +113,14 @@ def add_box( polygons, x, y, z, width, height, depth ):
     add_polygon(
         polygons, 
         vertex_g[0], vertex_g[1], vertex_g[2],
-        vertex_c[0], vertex_c[1], vertex_c[2],
         vertex_h[0], vertex_h[1], vertex_h[2],
+        vertex_c[0], vertex_c[1], vertex_c[2],
     )
     add_polygon(
         polygons,
         vertex_c[0], vertex_c[1], vertex_c[2],
-        vertex_d[0], vertex_d[1], vertex_d[2],
         vertex_h[0], vertex_h[1], vertex_h[2]
+        vertex_d[0], vertex_d[1], vertex_d[2],
     )
 
 def add_sphere(polygons, cx, cy, cz, r, steps ):
