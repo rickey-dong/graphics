@@ -114,13 +114,13 @@ def add_box( polygons, x, y, z, width, height, depth ):
         polygons, 
         vertex_g[0], vertex_g[1], vertex_g[2],
         vertex_h[0], vertex_h[1], vertex_h[2],
-        vertex_c[0], vertex_c[1], vertex_c[2],
+        vertex_c[0], vertex_c[1], vertex_c[2]
     )
     add_polygon(
         polygons,
         vertex_c[0], vertex_c[1], vertex_c[2],
-        vertex_h[0], vertex_h[1], vertex_h[2]
-        vertex_d[0], vertex_d[1], vertex_d[2],
+        vertex_h[0], vertex_h[1], vertex_h[2],
+        vertex_d[0], vertex_d[1], vertex_d[2]
     )
 
 def add_sphere(polygons, cx, cy, cz, r, steps ):
@@ -134,12 +134,9 @@ def add_sphere(polygons, cx, cy, cz, r, steps ):
 
     steps+= 1
     for lat in range(lat_start, lat_stop):
-        for longt in range(longt_start, longt_stop+1):
-            index = lat * steps + longt
-            print(index)
-            print(len(points), "LENGTHOF POINTS")
-            print(num_of_points_per_semicircle, "NUM OF POINTS PER SEM")
-            if longt != longt_start and longt != longt_stop:
+        for longt in range(longt_start, longt_stop):
+            index = lat * (steps) + longt
+            if longt != longt_stop - 1:
                 add_polygon(
                     polygons,
                     points[index][0],
@@ -152,6 +149,7 @@ def add_sphere(polygons, cx, cy, cz, r, steps ):
                     points[index+num_of_points_per_semicircle+1][1],
                     points[index+num_of_points_per_semicircle+1][2]
                 )
+            if longt != longt_start:
                 add_polygon(
                     polygons,
                     points[index][0],
@@ -186,7 +184,7 @@ def generate_sphere( cx, cy, cz, r, steps ):
     circ_start = 0
     circ_stop = steps
 
-    for rotation in range(rot_start, rot_stop):
+    for rotation in range(rot_start, rot_stop+1):
         rot = rotation/float(steps)
         for circle in range(circ_start, circ_stop+1):
             circ = circle/float(steps)
@@ -201,7 +199,7 @@ def generate_sphere( cx, cy, cz, r, steps ):
 
 def add_torus(polygons, cx, cy, cz, r0, r1, steps ):
     points = generate_torus(cx, cy, cz, r0, r1, steps)
-
+    num_of_points_per_semicircle = steps + 1
     lat_start = 0
     lat_stop = steps
     longt_start = 0
@@ -209,14 +207,32 @@ def add_torus(polygons, cx, cy, cz, r0, r1, steps ):
 
     for lat in range(lat_start, lat_stop):
         for longt in range(longt_start, longt_stop):
-            index = lat * steps + longt
+            index = lat * ( steps + 1 )+ longt
 
-            add_edge(polygons, points[index][0],
-                     points[index][1],
-                     points[index][2],
-                     points[index][0]+1,
-                     points[index][1]+1,
-                     points[index][2]+1 )
+            add_polygon(
+                    polygons,
+                    points[index][0],
+                    points[index][1],
+                    points[index][2],
+                    points[index+num_of_points_per_semicircle+1][0],
+                    points[index+num_of_points_per_semicircle+1][1],
+                    points[index+num_of_points_per_semicircle+1][2],
+                    points[index+1][0],
+                    points[index+1][1],
+                    points[index+1][2]
+                )
+            add_polygon(
+                    polygons,
+                    points[index][0],
+                    points[index][1],
+                    points[index][2],
+                    points[index+num_of_points_per_semicircle][0],
+                    points[index+num_of_points_per_semicircle][1],
+                    points[index+num_of_points_per_semicircle][2],
+                    points[index+num_of_points_per_semicircle+1][0],
+                    points[index+num_of_points_per_semicircle+1][1],
+                    points[index+num_of_points_per_semicircle+1][2],
+                )
 
 def generate_torus( cx, cy, cz, r0, r1, steps ):
     points = []
@@ -225,9 +241,9 @@ def generate_torus( cx, cy, cz, r0, r1, steps ):
     circ_start = 0
     circ_stop = steps
 
-    for rotation in range(rot_start, rot_stop):
+    for rotation in range(rot_start, rot_stop + 1):
         rot = rotation/float(steps)
-        for circle in range(circ_start, circ_stop):
+        for circle in range(circ_start, circ_stop + 1):
             circ = circle/float(steps)
 
             x = math.cos(2*math.pi * rot) * (r0 * math.cos(2*math.pi * circ) + r1) + cx;
