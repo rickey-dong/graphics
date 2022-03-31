@@ -125,6 +125,7 @@ def add_box( polygons, x, y, z, width, height, depth ):
 
 def add_sphere(polygons, cx, cy, cz, r, steps ):
     points = generate_sphere(cx, cy, cz, r, steps)
+    num_of_points_per_semicircle = steps + 1
 
     lat_start = 0
     lat_stop = steps
@@ -135,13 +136,44 @@ def add_sphere(polygons, cx, cy, cz, r, steps ):
     for lat in range(lat_start, lat_stop):
         for longt in range(longt_start, longt_stop+1):
             index = lat * steps + longt
-
-            add_edge(polygons, points[index][0],
-                     points[index][1],
-                     points[index][2],
-                     points[index][0]+1,
-                     points[index][1]+1,
-                     points[index][2]+1 )
+            if longt != longt_start and longt != longt_stop:
+                add_polygon(
+                    polygons,
+                    points[index][0],
+                    points[index][1],
+                    points[index][2],
+                    points[index+1][0],
+                    points[index+1][1],
+                    points[index+1][2],
+                    points[index+num_of_points_per_semicircle+1][0],
+                    points[index+num_of_points_per_semicircle+1][1],
+                    points[index+num_of_points_per_semicircle+1][2]
+                )
+                add_polygon(
+                    polygons,
+                    points[index][0],
+                    points[index][1],
+                    points[index][2],
+                    points[index+num_of_points_per_semicircle+1][0],
+                    points[index+num_of_points_per_semicircle+1][1],
+                    points[index+num_of_points_per_semicircle+1][2],
+                    points[index+num_of_points_per_semicircle][0],
+                    points[index+num_of_points_per_semicircle][1],
+                    points[index+num_of_points_per_semicircle][2]
+                )
+            else:
+                add_polygon(
+                    polygons,
+                    points[index][0],
+                    points[index][1],
+                    points[index][2],
+                    points[index+1][0],
+                    points[index+1][1],
+                    points[index+1][2],
+                    points[index+num_of_points_per_semicircle+1][0],
+                    points[index+num_of_points_per_semicircle+1][1],
+                    points[index+num_of_points_per_semicircle+1][2]
+                )
 
 def generate_sphere( cx, cy, cz, r, steps ):
     points = []
