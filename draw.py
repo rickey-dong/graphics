@@ -8,12 +8,14 @@ def add_polygon( polygons, x0, y0, z0, x1, y1, z1, x2, y2, z2 ):
     polygons.append([x2, y2, z2, 1])
 
 def draw_polygons( polygons, screen, color ):
+    print(polygons)
+    print(len(polygons), " how many points there are")
     if len(polygons) < 3:
         print('Need at least 3 points to draw')
         return
 
     point = 0
-    while point < len(polygons) - 1:
+    while point < len(polygons) - 2:
         draw_line( polygons[point][0],
                    polygons[point][1],
                    polygons[point+1][0],
