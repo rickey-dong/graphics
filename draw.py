@@ -13,7 +13,7 @@ def draw_polygons( polygons, screen, color ):
         return
 
     point = 0
-    while point < len(polygons) - 1: ##############DOUBLE CHECK THIS
+    while point < len(polygons) - 1:
         draw_line( polygons[point][0],
                    polygons[point][1],
                    polygons[point+1][0],
