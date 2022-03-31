@@ -3,13 +3,9 @@ from matrix import *
 from gmath import *
 
 def add_polygon( polygons, x0, y0, z0, x1, y1, z1, x2, y2, z2 ):
-    polygons.append(
-        [
-            [x0, y0, z0, 1],
-            [x1, y1, z1, 1],
-            [x2, y2, z2, 1]
-        ]
-    )
+    polygons.append([x0, y0, z0, 1])
+    polygons.append([x1, y1, z1, 1])
+    polygons.append([x2, y2, z2, 1])
 
 def draw_polygons( polygons, screen, color ):
     for triangle in polygons:
