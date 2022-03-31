@@ -74,7 +74,7 @@ def parse_file( fname, edges, polygons, transform, screen, color ):
 
         elif line == 'torus':
             #print 'TORUS\t' + str(args)
-            add_torus(edges,
+            add_torus(polygons,
                       float(args[0]), float(args[1]), float(args[2]),
                       float(args[3]), float(args[4]), steps_3d)
 
@@ -132,6 +132,7 @@ def parse_file( fname, edges, polygons, transform, screen, color ):
             ident(transform)
 
         elif line == 'apply':
+            print(edges)
             matrix_mult( transform, edges )
 
         elif line == 'clear':
