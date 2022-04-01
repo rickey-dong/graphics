@@ -15,4 +15,24 @@ def dot_product(a, b):
 #Calculate the surface normal for the triangle whose first
 #point is located at index i in polygons
 def calculate_normal(polygons, i):
-    return None
+    point_zero = polygons[i]
+    point_one = polygons[i+1]
+    point_two = polygons[i+2]
+
+    vector_a = [
+        point_one[0] - point_zero[0],
+        point_one[1] - point_zero[1],
+        point_one[2] - point_zero[2]
+    ]
+    vector_b = [
+        point_two[0] - point_zero[0],
+        point_two[1] - point_zero[1],
+        point_two[2] - point_zero[2]
+    ]
+
+    normal_vector = [
+        (vector_a[1] * vector_b[2]) - (vector_a[2] * vector_b[1]),
+        (vector_a[2] * vector_b[0]) - (vector_a[0] * vector_b[2]),
+        (vector_a[0] * vector_b[1]) - (vector_a[1] * vector_b[0])
+    ]
+    return normal_vector
