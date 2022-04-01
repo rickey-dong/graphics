@@ -14,7 +14,7 @@ def draw_polygons( polygons, screen, color ):
 
     point = 0
     while point < len(polygons) - 2:
-        normal_vector = calculate_normal(polygons, index)
+        normal_vector = calculate_normal(polygons, point)
         scalar_value = dot_product(normal_vector, [0, 0, 1])
         if scalar_value > 0:
             draw_line( int(polygons[point][0]),
