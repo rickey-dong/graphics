@@ -14,21 +14,24 @@ def draw_polygons( polygons, screen, color ):
 
     point = 0
     while point < len(polygons) - 2:
-        draw_line( int(polygons[point][0]),
-                   int(polygons[point][1]),
-                   int(polygons[point+1][0]),
-                   int(polygons[point+1][1]),
-                   screen, color )
-        draw_line( int(polygons[point+1][0]),
-                   int(polygons[point+1][1]),
-                   int(polygons[point+2][0]),
-                   int(polygons[point+2][1]),
-                   screen, color )
-        draw_line( int(polygons[point+2][0]),
-                   int(polygons[point+2][1]),
-                   int(polygons[point][0]),
-                   int(polygons[point][1]),
-                   screen, color )
+        normal_vector = calculate_normal(polygons, index)
+        scalar_value = dot_product(normal_vector, [0, 0, 1])
+        if scalar_value > 0:
+            draw_line( int(polygons[point][0]),
+                    int(polygons[point][1]),
+                    int(polygons[point+1][0]),
+                    int(polygons[point+1][1]),
+                    screen, color )
+            draw_line( int(polygons[point+1][0]),
+                    int(polygons[point+1][1]),
+                    int(polygons[point+2][0]),
+                    int(polygons[point+2][1]),
+                    screen, color )
+            draw_line( int(polygons[point+2][0]),
+                    int(polygons[point+2][1]),
+                    int(polygons[point][0]),
+                    int(polygons[point][1]),
+                    screen, color )
         point += 3
 
 def add_box( polygons, x, y, z, width, height, depth ):
