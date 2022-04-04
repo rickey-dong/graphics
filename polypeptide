@@ -1,0 +1,34 @@
+sphere
+170 100 0 40
+sphere
+330 100 0 40
+sphere
+110 300 0 40
+sphere
+390 300 0 40
+sphere
+250 400 0 40
+sphere
+360 480 0 40
+sphere
+520 320 0 40
+ident
+rotate
+y 35
+apply
+line
+120 320 0 170 400 0
+line
+100 260 0 140 140 0
+line
+180 100 0 230 100 0
+line
+280 140 0 310 260 0
+line
+355 300 0 390 317 0
+line
+243 400 0 300 314 0
+line
+240 415 0 265 455 0
+save
+polypeptide.png
