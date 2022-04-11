@@ -159,17 +159,6 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             matrix_mult(csystems[-1], t)
             csystems[-1] = [row[:] for row in t]
 
-        elif line == 'ident':
-            ident(transform)
-
-        elif line == 'apply':
-            matrix_mult( transform, edges )
-            matrix_mult( transform, polygons )
-
-        elif line == 'clear':
-            edges = []
-            polygons = []
-
         elif line == 'display' or line == 'save':
             clear_screen(screen)
             draw_lines(edges, screen, color)
