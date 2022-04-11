@@ -80,6 +80,9 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             current_top = [row[:] for row in csystems[-1]]
             csystems.append(current_top)
         
+        elif line == 'pop':
+            csystems.pop()
+        
         elif line == 'sphere':
             #print 'SPHERE\t' + str(args)
             add_sphere(polygons,
