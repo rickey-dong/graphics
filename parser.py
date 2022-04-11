@@ -171,9 +171,6 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             csystems[-1] = [row[:] for row in t]
 
         elif line == 'display' or line == 'save':
-            clear_screen(screen)
-            draw_lines(edges, screen, color)
-            draw_polygons(polygons, screen, color)
 
             if line == 'display':
                 display(screen)
