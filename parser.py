@@ -89,7 +89,7 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             add_sphere(temp,
                        float(args[0]), float(args[1]), float(args[2]),
                        float(args[3]), step_3d)
-            matrix_mult(temp, csystems[-1])
+            matrix_mult(csystems[-1], temp)
             draw_polygons(temp, screen, color)
             temp = []
 
@@ -99,7 +99,7 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             add_torus(temp,
                       float(args[0]), float(args[1]), float(args[2]),
                       float(args[3]), float(args[4]), step_3d)
-            matrix_mult(temp, csystems[-1])
+            matrix_mult(csystems[-1], temp)
             draw_polygons(temp, screen, color)
             temp = []
 
@@ -108,7 +108,7 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
             temp = []
             add_box(temp, float(args[0]), float(args[1]), float(args[2]),
                     float(args[3]), float(args[4]), float(args[5]))
-            matrix_mult(temp, csystems[-1])
+            matrix_mult(csystems[-1], temp)
             draw_polygons(temp, screen, color)
             temp = []
 
@@ -119,7 +119,7 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
                        float(args[0]), float(args[1]), float(args[2]),
                        float(args[3]), step)
             matrix_mult(temp, csystems[-1])
-            draw_lines(temp, screen, color)
+            draw_lines(csystems[-1], screen, color)
             temp = []
 
         elif line == 'hermite' or line == 'bezier':
@@ -132,7 +132,7 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
                       float(args[6]), float(args[7]),
                       step, line)
             matrix_mult(temp, csystems[-1])
-            draw_lines(temp, screen, color)
+            draw_lines(csystems[-1], screen, color)
             temp = []
 
         elif line == 'line':
@@ -142,7 +142,7 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
                       float(args[0]), float(args[1]), float(args[2]),
                       float(args[3]), float(args[4]), float(args[5]) )
             matrix_mult(temp, csystems[-1])
-            draw_lines(temp, screen, color)
+            draw_lines(csystems[-1], screen, color)
             temp = []
 
         elif line == 'scale':
