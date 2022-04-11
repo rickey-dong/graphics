@@ -126,12 +126,14 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
         elif line == 'scale':
             #print 'SCALE\t' + str(args)
             t = make_scale(float(args[0]), float(args[1]), float(args[2]))
-            matrix_mult(t, transform)
+            matrix_mult(csystems[-1], t)
+            csystems[-1] = [row[:] for row in t]
 
         elif line == 'move':
             #print 'MOVE\t' + str(args)
             t = make_translate(float(args[0]), float(args[1]), float(args[2]))
-            matrix_mult(t, transform)
+            matrix_mult(csystems[-1], t)
+            csystems[-1] = [row[:] for row in t]
 
         elif line == 'rotate':
             #print 'ROTATE\t' + str(args)
@@ -143,7 +145,8 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
                 t = make_rotY(theta)
             else:
                 t = make_rotZ(theta)
-            matrix_mult(t, transform)
+            matrix_mult(csystems[-1], t)
+            csystems[-1] = [row[:] for row in t]
 
         elif line == 'ident':
             ident(transform)
