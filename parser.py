@@ -114,18 +114,26 @@ def parse_file( fname, edges, polygons, csystems, screen, color ):
 
         elif line == 'circle':
             #print 'CIRCLE\t' + str(args)
-            add_circle(edges,
+            temp = []
+            add_circle(temp,
                        float(args[0]), float(args[1]), float(args[2]),
                        float(args[3]), step)
+            matrix_mult(temp, csystems[-1])
+            draw_lines(temp, screen, color)
+            temp = []
 
         elif line == 'hermite' or line == 'bezier':
             #print 'curve\t' + line + ": " + str(args)
-            add_curve(edges,
+            temp = []
+            add_curve(temp,
                       float(args[0]), float(args[1]),
                       float(args[2]), float(args[3]),
                       float(args[4]), float(args[5]),
                       float(args[6]), float(args[7]),
                       step, line)
+            matrix_mult(temp, csystems[-1])
+            draw_lines(temp, screen, color)
+            temp = []
 
         elif line == 'line':
             #print 'LINE\t' + str(args)
