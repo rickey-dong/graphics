@@ -3,7 +3,25 @@ from matrix import *
 from gmath import *
 
 def scanline_convert(polygons, i, screen, zbuffer ):
-    pass
+    """
+    colors in all of the polygons in the polygons list
+    """
+    triangle_set = 0
+    while triangle_set < len(polygons):
+        if triangle_set % 3 == 2: # gathered enough points (nine) to color in triangle
+            if i % 3 == 0: # color triangle with pink
+                pass
+            elif i % 3 == 1: # color triangle with green
+                pass
+            else: # color triangle with blue
+                pass
+            i += 1
+        triangle_set += 1
+
+def draw_scanline(x0, y0, z0, x1, y1, z1, screen, zbuffer, color):
+    """
+    draw a singular scanline
+    """
 
 def add_polygon( polygons, x0, y0, z0, x1, y1, z1, x2, y2, z2 ):
     add_point(polygons, x0, y0, z0)
