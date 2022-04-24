@@ -75,6 +75,7 @@ def handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, color):
                 else:
                     mid = point_B
                     bottom = point_A
+            draw_bottom_triangle(top, mid, bottom, screen, zbuffer, color)
         elif ordered_y_vals[1] == ordered_y_vals[2]: # triangle with 2 top equals
             if ordered_y_vals[0] == point_A[1]:
                 bottom = point_A
@@ -120,6 +121,18 @@ def draw_normal_triangle(t, m, b, screen, zbuffer, color):
             dx1_default = dx1_other
             x1 = m[0]
             changed_trajectory = True
+
+def draw_bottom_triangle(t, m, b, screen, zbuffer, color):
+    x0 = m[0]
+    x1 = b[0]
+    y = m[1]
+    dx0 = (t[0] - m[0]) / (t[1] - m[1] + 1)
+    dx1 = (t[0] - b[0]) / (t[1] - b[1] + 1)
+    while y <= t[1]:
+        draw_line(x0, y, 0, x1, y, 0, screen, zbuffer, color) # CHANGE Z VALUES LATER
+        x0 += dx0
+        x1 += dx1
+        y += 1
 
 def add_polygon( polygons, x0, y0, z0, x1, y1, z1, x2, y2, z2 ):
     add_point(polygons, x0, y0, z0)
