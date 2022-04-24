@@ -127,14 +127,20 @@ def draw_normal_triangle(t, m, b, screen, zbuffer, color):
 
 def draw_bottom_triangle(t, m, b, screen, zbuffer, color):
     x0 = m[0]
+    z0 = m[2]
     x1 = b[0]
+    z1 = b[2]
     y = int(m[1])
     dx0 = (t[0] - m[0]) / (int(t[1]) - int(m[1]) + 1)
+    dz0 = (t[2] - m[2]) / (int(t[1]) - int(m[1]) + 1)
     dx1 = (t[0] - b[0]) / (int(t[1]) - int(b[1]) + 1)
+    dz1 = (t[2] - b[2]) / (int(t[1]) - int(b[1]) + 1)
     while y <= int(t[1]):
-        draw_line(int(x0), y, 0, int(x1), y, 0, screen, zbuffer, color) # CHANGE Z VALUES LATER
+        draw_line(int(x0), y, z0, int(x1), y, z1, screen, zbuffer, color)
         x0 += dx0
+        z0 += dz0
         x1 += dx1
+        z1 += dz1
         y += 1
 
 def draw_top_triangle(t, m, b, screen, zbuffer, color):
