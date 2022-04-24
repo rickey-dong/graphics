@@ -14,6 +14,7 @@ ident(t)
 csystems = [ t ]
 
 
-parse_file( 'script', edges, polygons, csystems, screen, zbuffer, color )
+# parse_file( 'script', edges, polygons, csystems, screen, zbuffer, color )
 
-
+draw_normal_triangle((200, 300, 0), (400, 200, 0), (300, 50, 0), screen, zbuffer, color)
+save_extension(screen, "test.png")
