@@ -2,32 +2,34 @@ from display import *
 from matrix import *
 from gmath import *
 
-def scanline_convert(polygons, i, screen, zbuffer ):
+def scanline_convert(polygons, i, screen, zbuffer, color_choice):
     """
-    colors in all of the polygons in the polygons list
+    colors in the i'th polygon in the polygons list
     """
-    triangle_set = 0
-    while triangle_set < len(polygons):
-        if triangle_set % 3 == 2: # gathered enough points (nine) to color in triangle
-            x2 = polygons[triangle_set][0]
-            y2 = polygons[triangle_set][1]
-            z2 = polygons[triangle_set][2]
-            if i % 3 == 0: # color triangle with pink
-                handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [255, 192, 203])
-            elif i % 3 == 1: # color triangle with green
-                handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [127, 255, 0])
-            else: # color triangle with blue
-                handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [70, 130, 180])
-            i += 1
-        elif triangle_set % 3 == 1:
-            x1 = polygons[triangle_set][0]
-            y1 = polygons[triangle_set][1]
-            z1 = polygons[triangle_set][2]
-        else:
-            x0 = polygons[triangle_set][0]
-            y0 = polygons[triangle_set][1]
-            z0 = polygons[triangle_set][2]
-        triangle_set += 1
+    x0 = polygons[i][0]
+    y0 = polygons[i][1]
+    z0 = polygons[i][2]
+
+    x1 = polygons[i+1][0]
+    y1 = polygons[i+1][1]
+    z1 = polygons[i+1][2]
+
+    x2 = polygons[i+2][0]
+    y2 = polygons[i+2][1]
+    z2 = polygons[i+2][2]
+
+    if color_choice % 6 == 0: # color triangle with pink
+        handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [255, 192, 203])
+    elif color_choice % 6 == 1: # color triangle with green
+        handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [127, 255, 0])
+    elif color_choice % 6 == 2: # color triangle with blue
+        handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [70, 130, 180])
+    elif color_choice % 6 == 3: # color triangle with gray
+        handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [220, 220, 220])
+    elif color_choice % 6 == 4: # color triangle with brown
+        handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [165, 42, 42])
+    else: # color triangle with purple
+        handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [128, 0, 128])
 
 def handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, color):
     """
@@ -158,34 +160,15 @@ def draw_polygons( polygons, screen, zbuffer, color ):
         return
 
     point = 0
+    color_index = 0
     while point < len(polygons) - 2:
 
         normal = calculate_normal(polygons, point)[:]
         #print normal
         if normal[2] > 0:
-            draw_line( int(polygons[point][0]),
-                       int(polygons[point][1]),
-                       polygons[point][2],
-                       int(polygons[point+1][0]),
-                       int(polygons[point+1][1]),
-                       polygons[point+1][2],
-                       screen, zbuffer, color)
-            draw_line( int(polygons[point+2][0]),
-                       int(polygons[point+2][1]),
-                       polygons[point+2][2],
-                       int(polygons[point+1][0]),
-                       int(polygons[point+1][1]),
-                       polygons[point+1][2],
-                       screen, zbuffer, color)
-            draw_line( int(polygons[point][0]),
-                       int(polygons[point][1]),
-                       polygons[point][2],
-                       int(polygons[point+2][0]),
-                       int(polygons[point+2][1]),
-                       polygons[point+2][2],
-                       screen, zbuffer, color)
+            scanline_convert(polygons, point, screen, zbuffer, color_index)
+            color_index += 1
         point+= 3
-    scanline_convert(polygons, 0, screen, zbuffer)
 
 
 def add_box( polygons, x, y, z, width, height, depth ):
