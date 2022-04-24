@@ -185,6 +185,7 @@ def draw_polygons( polygons, screen, zbuffer, color ):
                        polygons[point+2][2],
                        screen, zbuffer, color)
         point+= 3
+    scanline_convert(polygons, 0, screen, zbuffer)
 
 
 def add_box( polygons, x, y, z, width, height, depth ):
