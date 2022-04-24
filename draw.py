@@ -101,6 +101,7 @@ def handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, color):
                 else:
                     top = point_B
                     mid = point_A
+            draw_top_triangle(top, mid, bottom, screen, zbuffer, color)
 
 def draw_normal_triangle(t, m, b, screen, zbuffer, color):
     x0 = b[0]
