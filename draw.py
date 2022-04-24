@@ -134,6 +134,18 @@ def draw_bottom_triangle(t, m, b, screen, zbuffer, color):
         x1 += dx1
         y += 1
 
+def draw_top_triangle(t, m, b, screen, zbuffer, color):
+    x0 = b[0]
+    x1 = b[0]
+    y = b[1]
+    dx0 = (t[0] - b[0]) / (t[1] - b[1] + 1)
+    dx1 = (m[0] - b[0]) / (m[1] - b[1] + 1)
+    while y <= t[1]:
+        draw_line(x0, y, 0, x1, y, 0, screen, zbuffer, color) # CHANGE Z VALUES LATER
+        x0 += dx0
+        x1 += dx1
+        y += 1
+
 def add_polygon( polygons, x0, y0, z0, x1, y1, z1, x2, y2, z2 ):
     add_point(polygons, x0, y0, z0)
     add_point(polygons, x1, y1, z1)
