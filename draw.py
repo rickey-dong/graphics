@@ -30,7 +30,30 @@ def scanline_convert(polygons, i, screen, zbuffer ):
         triangle_set += 1
 
 def color_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, color):
-    pass
+    """
+    color in a triangle
+    """
+    
+    # find the top, middle, and bottom vertices and draw lines of that triangle
+    point_A = (x0, y0, z0)
+    point_B = (x1, y1, z1)
+    point_C = (x2, y2, z2)
+    point_mappings = {
+        y0: point_A,
+        y1: point_B,
+        y2: point_C
+    }
+    ordered_y_vals = [y0, y1, y2]
+    ordered_y_vals.sort()
+    if y0 != y1 and y1 != y2 and y0 != y2: # normal triangle
+        top = point_mappings[ordered_y_vals[2]]
+        mid = point_mappings[ordered_y_vals[1]]
+        bottom = point_mappings[ordered_y_vals[0]]
+    else: # special triangle
+        if ordered_y_vals[0] == ordered_y_vals[1]: # triangle with 2 bottom equals
+            pass
+        elif ordered_y_vals[1] == ordered_y_vals[2]: # triangle with 2 top equals
+            pass
 
 def draw_scanline(x0, y0, z0, x1, y1, z1, screen, zbuffer, color):
     """
