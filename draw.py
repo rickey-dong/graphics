@@ -369,7 +369,11 @@ def add_point( matrix, x, y, z=0 ):
 
 
 def draw_line( x0, y0, z0, x1, y1, z1, screen, zbuffer, color ):
+    x0 = int(x0)
+    y0 = int(y0)
 
+    x1 = int(x1)
+    y1 = int(y1)
     #swap points if going right -> left
     if x0 > x1:
         xt = x0
