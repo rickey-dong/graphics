@@ -18,18 +18,10 @@ def scanline_convert(polygons, i, screen, zbuffer, color_choice):
     y2 = polygons[i+2][1]
     z2 = polygons[i+2][2]
 
-    if color_choice % 6 == 0: # color triangle with pink
-        handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [255, 192, 203])
-    elif color_choice % 6 == 1: # color triangle with green
-        handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [127, 255, 0])
-    elif color_choice % 6 == 2: # color triangle with blue
-        handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [70, 130, 180])
-    elif color_choice % 6 == 3: # color triangle with gray
-        handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [220, 220, 220])
-    elif color_choice % 6 == 4: # color triangle with brown
-        handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [165, 42, 42])
-    else: # color triangle with purple
-        handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [128, 0, 128])
+    handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer,
+                    [(20*(i//3)) %256,
+                    (100*(i//3)) %256,
+                    (200*(i//3)) %256])
 
 def handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, color):
     """
@@ -108,19 +100,19 @@ def handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, color):
 def draw_normal_triangle(t, m, b, screen, zbuffer, color):
     x0 = b[0]
     x1 = b[0]
-    y = b[1]
-    dx0 = (t[0] - b[0]) / (t[1] - b[1] + 1)
-    dx1_default = (m[0] - b[0]) / (m[1] - b[1] + 1)
-    dx1_other = (t[0] - m[0]) / (t[1] - m[1] + 1)
+    y = int(b[1])
+    dx0 = (t[0] - b[0]) / (int(t[1]) - int(b[1]) + 1)
+    dx1_default = (m[0] - b[0]) / (int(m[1]) - int(b[1]) + 1)
+    dx1_other = (t[0] - m[0]) / (int(t[1]) - int(m[1]) + 1)
     changed_trajectory = False
-    while y <= t[1]:
-        draw_line(x0, y, 0, x1, y, 0, screen, zbuffer, color) # CHANGE Z VALUES LATER
+    while y <= int(t[1]):
+        draw_line(int(x0), y, 0, int(x1), y, 0, screen, zbuffer, color) # CHANGE Z VALUES LATER
         # update the endpoints
         x0 += dx0
         x1 += dx1_default
         y += 1
         # swap dx1 if changing direction
-        if y >= m[1] and not changed_trajectory:
+        if y >= int(m[1]) and not changed_trajectory:
             dx1_default = dx1_other
             x1 = m[0]
             changed_trajectory = True
@@ -128,11 +120,11 @@ def draw_normal_triangle(t, m, b, screen, zbuffer, color):
 def draw_bottom_triangle(t, m, b, screen, zbuffer, color):
     x0 = m[0]
     x1 = b[0]
-    y = m[1]
-    dx0 = (t[0] - m[0]) / (t[1] - m[1] + 1)
-    dx1 = (t[0] - b[0]) / (t[1] - b[1] + 1)
-    while y <= t[1]:
-        draw_line(x0, y, 0, x1, y, 0, screen, zbuffer, color) # CHANGE Z VALUES LATER
+    y = int(m[1])
+    dx0 = (t[0] - m[0]) / (int(t[1]) - int(m[1]) + 1)
+    dx1 = (t[0] - b[0]) / (int(t[1]) - int(b[1]) + 1)
+    while y <= int(t[1]):
+        draw_line(int(x0), y, 0, int(x1), y, 0, screen, zbuffer, color) # CHANGE Z VALUES LATER
         x0 += dx0
         x1 += dx1
         y += 1
@@ -140,11 +132,11 @@ def draw_bottom_triangle(t, m, b, screen, zbuffer, color):
 def draw_top_triangle(t, m, b, screen, zbuffer, color):
     x0 = b[0]
     x1 = b[0]
-    y = b[1]
-    dx0 = (t[0] - b[0]) / (t[1] - b[1] + 1)
-    dx1 = (m[0] - b[0]) / (m[1] - b[1] + 1)
-    while y <= t[1]:
-        draw_line(x0, y, 0, x1, y, 0, screen, zbuffer, color) # CHANGE Z VALUES LATER
+    y = int(b[1])
+    dx0 = (t[0] - b[0]) / (int(t[1]) - int(b[1]) + 1)
+    dx1 = (m[0] - b[0]) / (int(m[1]) - int(b[1]) + 1)
+    while y <= int(t[1]):
+        draw_line(int(x0), y, 0, int(x1), y, 0, screen, zbuffer, color) # CHANGE Z VALUES LATER
         x0 += dx0
         x1 += dx1
         y += 1
