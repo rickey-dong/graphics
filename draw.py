@@ -48,6 +48,7 @@ def handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, color):
         top = point_mappings[ordered_y_vals[2]]
         mid = point_mappings[ordered_y_vals[1]]
         bottom = point_mappings[ordered_y_vals[0]]
+        draw_normal_triangle(top, mid, bottom, screen, zbuffer, color)
     else: # special triangle
         if ordered_y_vals[0] == ordered_y_vals[1]: # triangle with 2 bottom equals
             if ordered_y_vals[2] == point_A[1]:
@@ -100,10 +101,25 @@ def handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, color):
                     top = point_B
                     mid = point_A
 
-def draw_scanline(x0, y0, z0, x1, y1, z1, screen, zbuffer, color):
-    """
-    draw a singular scanline
-    """
+def draw_normal_triangle(t, m, b, screen, zbuffer, color):
+    x0 = b[0]
+    x1 = b[0]
+    y = b[1]
+    dx0 = (t[0] - b[0]) / (t[1] - b[1] + 1)
+    dx1_default = (m[0] - b[0]) / (m[1] - b[1] + 1)
+    dx1_other = (t[0] - m[0]) / (t[1] - m[1] + 1)
+    changed_trajectory = False
+    while y <= t[1]:
+        draw_line(x0, y, 0, x1, y, 0, screen, zbuffer, color) # CHANGE Z VALUES LATER
+        # update the endpoints
+        x0 += dx0
+        x1 += dx1_default
+        y += 1
+        # swap dx1 if changing direction
+        if y >= m[1] and not changed_trajectory:
+            dx1_default = dx1_other
+            x1 = m[0]
+            changed_trajectory = True
 
 def add_polygon( polygons, x0, y0, z0, x1, y1, z1, x2, y2, z2 ):
     add_point(polygons, x0, y0, z0)
