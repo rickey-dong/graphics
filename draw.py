@@ -13,11 +13,11 @@ def scanline_convert(polygons, i, screen, zbuffer ):
             y2 = polygons[triangle_set][1]
             z2 = polygons[triangle_set][2]
             if i % 3 == 0: # color triangle with pink
-                color_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [255, 192, 203])
+                handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [255, 192, 203])
             elif i % 3 == 1: # color triangle with green
-                color_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [127, 255, 0])
+                handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [127, 255, 0])
             else: # color triangle with blue
-                color_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [70, 130, 180])
+                handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [70, 130, 180])
             i += 1
         elif triangle_set % 3 == 1:
             x1 = polygons[triangle_set][0]
@@ -29,31 +29,76 @@ def scanline_convert(polygons, i, screen, zbuffer ):
             z0 = polygons[triangle_set][2]
         triangle_set += 1
 
-def color_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, color):
+def handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, color):
     """
-    color in a triangle
+    handle all triangle cases
     """
-    
     # find the top, middle, and bottom vertices and draw lines of that triangle
     point_A = (x0, y0, z0)
     point_B = (x1, y1, z1)
     point_C = (x2, y2, z2)
-    point_mappings = {
-        y0: point_A,
-        y1: point_B,
-        y2: point_C
-    }
     ordered_y_vals = [y0, y1, y2]
     ordered_y_vals.sort()
     if y0 != y1 and y1 != y2 and y0 != y2: # normal triangle
+        point_mappings = {
+            y0: point_A,
+            y1: point_B,
+            y2: point_C
+        }
         top = point_mappings[ordered_y_vals[2]]
         mid = point_mappings[ordered_y_vals[1]]
         bottom = point_mappings[ordered_y_vals[0]]
     else: # special triangle
         if ordered_y_vals[0] == ordered_y_vals[1]: # triangle with 2 bottom equals
-            pass
+            if ordered_y_vals[2] == point_A[1]:
+                top = point_A
+                if point_B[0] < point_C[0]:
+                    mid = point_B
+                    bottom = point_C
+                else:
+                    mid = point_C
+                    bottom = point_B
+            elif ordered_y_vals[2] == point_B[1]:
+                top = point_B
+                if point_A[0] < point_C[0]:
+                    mid = point_A
+                    bottom = point_C
+                else:
+                    mid = point_C
+                    bottom = point_A
+            else:
+                top = point_C
+                if point_A[0] < point_B[0]:
+                    mid = point_A
+                    bottom = point_B
+                else:
+                    mid = point_B
+                    bottom = point_A
         elif ordered_y_vals[1] == ordered_y_vals[2]: # triangle with 2 top equals
-            pass
+            if ordered_y_vals[0] == point_A[1]:
+                bottom = point_A
+                if point_B[0] < point_C[0]:
+                    top = point_B
+                    mid = point_C
+                else:
+                    top = point_C
+                    mid = point_B
+            elif ordered_y_vals[0] == point_B[1]:
+                bottom = point_B
+                if point_A[0] < point_C[0]:
+                    top = point_A
+                    mid = point_C
+                else:
+                    top = point_C
+                    mid = point_A
+            else:
+                bottom = point_C
+                if point_A[0] < point_B[0]:
+                    top = point_A
+                    mid = point_B
+                else:
+                    top = point_B
+                    mid = point_A
 
 def draw_scanline(x0, y0, z0, x1, y1, z1, screen, zbuffer, color):
     """
