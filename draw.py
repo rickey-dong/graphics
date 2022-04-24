@@ -99,21 +99,29 @@ def handle_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, color):
 
 def draw_normal_triangle(t, m, b, screen, zbuffer, color):
     x0 = b[0]
+    z0 = b[2]
     x1 = b[0]
+    z1 = b[2]
     y = int(b[1])
     dx0 = (t[0] - b[0]) / (int(t[1]) - int(b[1]) + 1)
+    dz0 = (t[2] - b[2]) / (int(t[1]) - int(b[1]) + 1)
     dx1_default = (m[0] - b[0]) / (int(m[1]) - int(b[1]) + 1)
+    dz1_default = (m[2] - b[2]) / (int(m[1]) - int(b[1]) + 1)
     dx1_other = (t[0] - m[0]) / (int(t[1]) - int(m[1]) + 1)
+    dz1_other = (t[2] - m[2]) / (int(t[1]) - int(m[1]) + 1)
     changed_trajectory = False
     while y <= int(t[1]):
-        draw_line(int(x0), y, 0, int(x1), y, 0, screen, zbuffer, color) # CHANGE Z VALUES LATER
+        draw_line(int(x0), y, z0, int(x1), y, z1, screen, zbuffer, color)
         # update the endpoints
         x0 += dx0
+        z0 += dz0
         x1 += dx1_default
+        z1 += dz1_default
         y += 1
-        # swap dx1 if changing direction
+        # swap dx1 and dz1 if changing direction
         if y >= int(m[1]) and not changed_trajectory:
             dx1_default = dx1_other
+            dz1_default = dz1_other
             x1 = m[0]
             changed_trajectory = True
 
