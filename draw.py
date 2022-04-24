@@ -9,14 +9,28 @@ def scanline_convert(polygons, i, screen, zbuffer ):
     triangle_set = 0
     while triangle_set < len(polygons):
         if triangle_set % 3 == 2: # gathered enough points (nine) to color in triangle
+            x2 = polygons[triangle_set][0]
+            y2 = polygons[triangle_set][1]
+            z2 = polygons[triangle_set][2]
             if i % 3 == 0: # color triangle with pink
-                pass
+                color_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [255, 192, 203])
             elif i % 3 == 1: # color triangle with green
-                pass
+                color_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [127, 255, 0])
             else: # color triangle with blue
-                pass
+                color_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, [70, 130, 180])
             i += 1
+        elif triangle_set % 3 == 1:
+            x1 = polygons[triangle_set][0]
+            y1 = polygons[triangle_set][1]
+            z1 = polygons[triangle_set][2]
+        else:
+            x0 = polygons[triangle_set][0]
+            y0 = polygons[triangle_set][1]
+            z0 = polygons[triangle_set][2]
         triangle_set += 1
+
+def color_triangle(x0, y0, z0, x1, y1, z1, x2, y2, z2, screen, zbuffer, color):
+    pass
 
 def draw_scanline(x0, y0, z0, x1, y1, z1, screen, zbuffer, color):
     """
