@@ -19,13 +19,16 @@ SPECULAR = 2
 LOCATION = 0
 COLOR = 1
 SPECULAR_EXP = 4
+RED = 0
+GREEN = 1
+BLUE = 2
 
 #lighting functions
 def get_lighting(normal, view, ambient, light, areflect, dreflect, sreflect ):
     return [0, 0, 0]
 
 def calculate_ambient(alight, areflect):
-    pass
+    I_r = 
 
 def calculate_diffuse(light, dreflect, normal):
     pass
