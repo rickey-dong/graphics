@@ -28,7 +28,16 @@ def get_lighting(normal, view, ambient, light, areflect, dreflect, sreflect ):
     return [0, 0, 0]
 
 def calculate_ambient(alight, areflect):
-    I_r = 
+    I_r = alight[RED] * areflect[RED]
+    I_g = alight[GREEN] * areflect[GREEN]
+    I_b = alight[BLUE] * areflect[BLUE]
+    if I_r > 255:
+        I_r = 255
+    if I_g > 255:
+        I_g = 255
+    if I_b > 255:
+        I_b = 255
+    return [I_r, I_g, I_b]
 
 def calculate_diffuse(light, dreflect, normal):
     pass
