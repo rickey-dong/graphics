@@ -39,7 +39,6 @@ def calculate_ambient(alight, areflect):
     return [I_r, I_g, I_b]
 
 def calculate_diffuse(point_light, dreflect, normal):
-
     normalized_normal = normal[:]
     normalize(normalized_normal)
 
@@ -60,7 +59,17 @@ def calculate_diffuse(point_light, dreflect, normal):
     return [I_r, I_g, I_b]
 
 def calculate_specular(point_light, sreflect, view, normal):
-    pass
+    normalized_normal = normal[:]
+    normalize(normalized_normal)
+
+    normalized_L = point_light[LOCATION][:]
+    normalize(normalized_L)
+
+    normalized_V = view[:]
+    normalize(normalized_V)
+
+    I_r = point_light[COLOR][RED] * sreflect[RED] * \
+    () ** SPECULAR_EXP
 
 def limit_color(color):
     if color > 255 or color < 0:
