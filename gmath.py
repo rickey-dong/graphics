@@ -31,29 +31,50 @@ def calculate_ambient(alight, areflect):
     I_r = alight[RED] * areflect[RED]
     I_g = alight[GREEN] * areflect[GREEN]
     I_b = alight[BLUE] * areflect[BLUE]
-    if I_r > 255:
-        I_r = 255
-    if I_g > 255:
-        I_g = 255
-    if I_b > 255:
-        I_b = 255
+    
+    limit_color(I_r)
+    limit_color(I_g)
+    limit_color(I_b)
+
     return [I_r, I_g, I_b]
 
-def calculate_diffuse(light, dreflect, normal):
-    pass
+def calculate_diffuse(point_light, dreflect, normal):
 
-def calculate_specular(light, sreflect, view, normal):
+    normalized_normal = normal[:]
+    normalize(normalized_normal)
+
+    normalized_L = point_light[LOCATION][:]
+    normalize(normalized_L)
+
+    I_r = point_light[COLOR][RED] * dreflect[RED] * \
+    ( dot_product( normalized_normal, normalized_L) )
+    I_g = point_light[COLOR][GREEN] * dreflect[GREEN] * \
+    ( dot_product( normalized_normal, normalized_L) )
+    I_b = point_light[COLOR][BLUE] * dreflect[BLUE] * \
+    ( dot_product( normalized_normal, normalized_L) )
+
+    limit_color(I_r)
+    limit_color(I_g)
+    limit_color(I_b)
+
+    return [I_r, I_g, I_b]
+
+def calculate_specular(point_light, sreflect, view, normal):
     pass
 
 def limit_color(color):
-    pass
+    if color > 255 or color < 0:
+        if color > 255:
+            color = 255
+        else:
+            color = 0
 
 #vector functions
 #normalize vetor, should modify the parameter
 def normalize(vector):
     magnitude = math.sqrt( vector[0] * vector[0] +
                            vector[1] * vector[1] +
-                           vector[2] * vector[2])
+                           vector[2] * vector[2] )
     for i in range(3):
         vector[i] = vector[i] / magnitude
 
