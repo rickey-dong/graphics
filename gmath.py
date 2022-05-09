@@ -64,12 +64,16 @@ def calculate_diffuse(point_light, dreflect, normal):
     normalized_L = point_light[LOCATION][:]
     normalize(normalized_L)
 
+    dot = dot_product( normalized_normal, normalized_L)
+    if dot < 0:
+        dot = 0
+
     I_r = point_light[COLOR][RED] * dreflect[RED] * \
-    ( dot_product( normalized_normal, normalized_L) )
+    ( dot )
     I_g = point_light[COLOR][GREEN] * dreflect[GREEN] * \
-    ( dot_product( normalized_normal, normalized_L) )
+    ( dot )
     I_b = point_light[COLOR][BLUE] * dreflect[BLUE] * \
-    ( dot_product( normalized_normal, normalized_L) )
+    ( dot )
 
     I_r = limit_color(I_r)
     I_g = limit_color(I_g)
@@ -98,12 +102,16 @@ def calculate_specular(point_light, sreflect, view, normal):
     temp[1] = temp[1] - normalized_L[1]
     temp[2] = temp[2] - normalized_L[2]
 
+    dot = dot_product( temp , normalized_V)
+    if dot < 0:
+        dot = 0
+
     I_r = point_light[COLOR][RED] * sreflect[RED] * \
-    (dot_product( temp , normalized_V)) ** SPECULAR_EXP
+    (dot) ** SPECULAR_EXP
     I_g = point_light[COLOR][GREEN] * sreflect[GREEN] * \
-    (dot_product( temp , normalized_V)) ** SPECULAR_EXP
+    (dot) ** SPECULAR_EXP
     I_b = point_light[COLOR][BLUE] * sreflect[BLUE] * \
-    (dot_product( temp , normalized_V)) ** SPECULAR_EXP
+    (dot) ** SPECULAR_EXP
 
     I_r = limit_color(I_r)
     I_g = limit_color(I_g)
