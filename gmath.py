@@ -29,10 +29,19 @@ def get_lighting(normal, view, ambient, light, areflect, dreflect, sreflect ):
     I_diffuse = calculate_diffuse(light, dreflect, normal)
     I_specular = calculate_specular(light, sreflect, view, normal)
 
+    r = int(I_ambient[0] + I_diffuse[0] + I_specular[0])
+    r = limit_color(r)
+
+    g = int(I_ambient[1] + I_diffuse[1] + I_specular[1])
+    g = limit_color(g)
+
+    b = int(I_ambient[2] + I_diffuse[2] + I_specular[2])
+    b = limit_color(b)
+
     I = [
-        I_ambient[0] + I_diffuse[0] + I_specular[0],
-        I_ambient[1] + I_diffuse[1] + I_specular[1],
-        I_ambient[2] + I_diffuse[2] + I_specular[2]
+        r,
+        g,
+        b
     ]
 
     return I
@@ -42,9 +51,9 @@ def calculate_ambient(alight, areflect):
     I_g = alight[GREEN] * areflect[GREEN]
     I_b = alight[BLUE] * areflect[BLUE]
     
-    limit_color(I_r)
-    limit_color(I_g)
-    limit_color(I_b)
+    I_r = limit_color(I_r)
+    I_g = limit_color(I_g)
+    I_b = limit_color(I_b)
 
     return [I_r, I_g, I_b]
 
@@ -62,9 +71,9 @@ def calculate_diffuse(point_light, dreflect, normal):
     I_b = point_light[COLOR][BLUE] * dreflect[BLUE] * \
     ( dot_product( normalized_normal, normalized_L) )
 
-    limit_color(I_r)
-    limit_color(I_g)
-    limit_color(I_b)
+    I_r = limit_color(I_r)
+    I_g = limit_color(I_g)
+    I_b = limit_color(I_b)
 
     return [I_r, I_g, I_b]
 
@@ -96,9 +105,9 @@ def calculate_specular(point_light, sreflect, view, normal):
     I_b = point_light[COLOR][BLUE] * sreflect[BLUE] * \
     (dot_product( temp , normalized_V)) ** SPECULAR_EXP
 
-    limit_color(I_r)
-    limit_color(I_g)
-    limit_color(I_b)
+    I_r = limit_color(I_r)
+    I_g = limit_color(I_g)
+    I_b = limit_color(I_b)
 
     return [I_r, I_g, I_b]
 
@@ -108,6 +117,9 @@ def limit_color(color):
             color = 255
         else:
             color = 0
+        return color
+    else:
+        return color
 
 #vector functions
 #normalize vetor, should modify the parameter
