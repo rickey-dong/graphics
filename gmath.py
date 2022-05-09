@@ -68,8 +68,29 @@ def calculate_specular(point_light, sreflect, view, normal):
     normalized_V = view[:]
     normalize(normalized_V)
 
+    vector_R = 2 * (dot_product(normalized_normal, normalized_L))
+    temp = normalized_normal[:]
+
+    temp[0] = temp[0] * vector_R
+    temp[1] = temp[1] * vector_R
+    temp[2] = temp[2] * vector_R
+
+    temp[0] = temp[0] - normalized_L[0]
+    temp[1] = temp[1] - normalized_L[1]
+    temp[2] = temp[2] - normalized_L[2]
+
     I_r = point_light[COLOR][RED] * sreflect[RED] * \
-    () ** SPECULAR_EXP
+    (dot_product( temp , normalized_V)) ** SPECULAR_EXP
+    I_g = point_light[COLOR][GREEN] * sreflect[GREEN] * \
+    (dot_product( temp , normalized_V)) ** SPECULAR_EXP
+    I_b = point_light[COLOR][BLUE] * sreflect[BLUE] * \
+    (dot_product( temp , normalized_V)) ** SPECULAR_EXP
+
+    limit_color(I_r)
+    limit_color(I_g)
+    limit_color(I_b)
+
+    return [I_r, I_g, I_b]
 
 def limit_color(color):
     if color > 255 or color < 0:
