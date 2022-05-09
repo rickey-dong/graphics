@@ -25,7 +25,17 @@ BLUE = 2
 
 #lighting functions
 def get_lighting(normal, view, ambient, light, areflect, dreflect, sreflect ):
-    return [0, 0, 0]
+    I_ambient = calculate_ambient(ambient, areflect)
+    I_diffuse = calculate_diffuse(light, dreflect, normal)
+    I_specular = calculate_specular(light, sreflect, view, normal)
+
+    I = [
+        I_ambient[0] + I_diffuse[0] + I_specular[0],
+        I_ambient[1] + I_diffuse[1] + I_specular[1],
+        I_ambient[2] + I_diffuse[2] + I_specular[2]
+    ]
+
+    return I
 
 def calculate_ambient(alight, areflect):
     I_r = alight[RED] * areflect[RED]
