@@ -77,7 +77,12 @@ def run(filename):
                 matrix_mult(stack[-1], t)
                 stack[-1] = [row[:] for row in t]
              else:
-
+                x_factor = command['args'][0]
+                y_factor = command['args'][1]
+                z_factor = command['args'][2]
+                t = make_scale(x_factor, y_factor, z_factor)
+                matrix_mult(stack[-1], t)
+                stack[-1] = [row[:] for row in t]
          elif actual_command == "box" or actual_command == "sphere" or actual_command == "torus":
         
              if actual_command == "box":
