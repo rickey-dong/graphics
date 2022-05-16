@@ -66,7 +66,16 @@ def run(filename):
                 matrix_mult(stack[-1], t)
                 stack[-1] = [row[:] for row in t]
              elif actual_command == "rotate":
-            
+                direction = command['args'][0]
+                theta = command['args'][1]
+                if direction == "x":
+                    t = make_rotX(theta)
+                elif direction == "y":
+                    t = make_rotY(theta)
+                else:
+                    t = make_rotZ(theta)
+                matrix_mult(stack[-1], t)
+                stack[-1] = [row[:] for row in t]
              else:
 
          elif actual_command == "box" or actual_command == "sphere" or actual_command == "torus":
