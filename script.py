@@ -93,10 +93,14 @@ def run(filename):
                  depth = command['args'][5]
                  add_box(tmp, x, y, z, width, height, depth)
                  matrix_mult(stack[-1], tmp)
-                 draw_polygons(tmp, screen, color)
+                 if command['constants'] == None:
+                    draw_polygons(tmp, screen, zbuffer, view, ambient, light, symbols, reflect)
+                 else:
+                
                  tmp = []
              elif actual_command == "sphere":
-            
+                 tmp = []
+
              else:
 
          elif actual_command == "constants":
