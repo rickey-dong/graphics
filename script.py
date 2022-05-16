@@ -55,7 +55,7 @@ def run(filename):
             copy_of_current_top = [row[:] for row in stack[-1]]
             stack.append(copy_of_current_top)
         elif actual_command == "pop":
-
+            stack.pop()
         elif actual_command == "move" or actual_command == "rotate" or actual_command == "scale":
             
             if actual_command == "move":
