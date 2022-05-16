@@ -17,7 +17,7 @@ def run(filename):
 
     view = [0,
             0,
-            1];
+            1]
     ambient = [50,
                50,
                50]
@@ -57,7 +57,6 @@ def run(filename):
          elif actual_command == "pop":
              stack.pop()
          elif actual_command == "move" or actual_command == "rotate" or actual_command == "scale":
-            
              if actual_command == "move":
                 x_factor = command['args'][0]
                 y_factor = command['args'][1]
@@ -84,9 +83,18 @@ def run(filename):
                 matrix_mult(stack[-1], t)
                 stack[-1] = [row[:] for row in t]
          elif actual_command == "box" or actual_command == "sphere" or actual_command == "torus":
-        
              if actual_command == "box":
-            
+                 tmp = []
+                 x = command['args'][0]
+                 y = command['args'][1]
+                 z = command['args'][2]
+                 width = command['args'][3]
+                 height = command['args'][4]
+                 depth = command['args'][5]
+                 add_box(tmp, x, y, z, width, height, depth)
+                 matrix_mult(stack[-1], tmp)
+                 draw_polygons(tmp, screen, color)
+                 tmp = []
              elif actual_command == "sphere":
             
              else:
