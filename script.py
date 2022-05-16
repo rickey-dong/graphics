@@ -50,35 +50,37 @@ def run(filename):
     print("HEY")
     for command in commands:
         print(command)
-        # actual_command = command['op']
-        # if actual_command == "push":
-        #     copy_of_current_top = [row[:] for row in stack[-1]]
-        #     stack.append(copy_of_current_top)
-        # elif actual_command == "pop":
-        #     stack.pop()
-        # elif actual_command == "move" or actual_command == "rotate" or actual_command == "scale":
+         actual_command = command['op']
+         if actual_command == "push":
+             copy_of_current_top = [row[:] for row in stack[-1]]
+             stack.append(copy_of_current_top)
+         elif actual_command == "pop":
+             stack.pop()
+         elif actual_command == "move" or actual_command == "rotate" or actual_command == "scale":
             
-        #     if actual_command == "move":
+             if actual_command == "move":
                 x_factor = command['args'][0]
                 y_factor = command['args'][1]
                 z_factor = command['args'][2]
-                t = make_translate(float(args[0]), float(args[1]), float(args[2]))
-        #     elif actual_command == "rotate":
+                t = make_translate(x_factor, y_factor, z_factor)
+                matrix_mult(stack[-1], t)
+                stack[-1] = [row[:] for row in t]
+             elif actual_command == "rotate":
             
-        #     else:
+             else:
 
-        # elif actual_command == "box" or actual_command == "sphere" or actual_command == "torus":
+         elif actual_command == "box" or actual_command == "sphere" or actual_command == "torus":
         
-        #     if actual_command == "box":
+             if actual_command == "box":
             
-        #     elif actual_command == "sphere":
+             elif actual_command == "sphere":
             
-        #     else:
+             else:
 
-        # elif actual_command == "constants":
+         elif actual_command == "constants":
         
-        # elif actual_command == "line":
+         elif actual_command == "line":
         
-        # elif actual_command == "save":
+         elif actual_command == "save":
             
-        # elif actual_command == "display":
+         elif actual_command == "display":
