@@ -52,7 +52,8 @@ def run(filename):
         print(command)
         actual_command = command['op']
         if actual_command == "push":
-
+            copy_of_current_top = [row[:] for row in stack[-1]]
+            stack.append(copy_of_current_top)
         elif actual_command == "pop":
 
         elif actual_command == "move" or actual_command == "rotate" or actual_command == "scale":
