@@ -101,7 +101,18 @@ def run(filename):
                  tmp = []
              elif actual_command == "sphere":
                  tmp = []
-
+                 x = command['args'][0]
+                 y = command['args'][1]
+                 z = command['args'][2]
+                 r = command['args'][3]
+                 add_sphere(tmp, x, y, z, r, step_3d)
+                 matrix_mult(stack[-1], tmp)
+                 if command['constants'] == None:
+                    draw_polygons(tmp, screen, zbuffer, view, ambient, light, symbols, reflect)
+                 else:
+                     color_choice = command['constants']
+                     draw_polygons(tmp, screen, zbuffer, view, ambient, light, symbols, color_choice)
+                 tmp = []
              else:
 
          elif actual_command == "constants":
