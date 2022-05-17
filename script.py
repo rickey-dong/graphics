@@ -114,7 +114,20 @@ def run(filename):
                      draw_polygons(tmp, screen, zbuffer, view, ambient, light, symbols, color_choice)
                  tmp = []
              else:
-
+                 tmp = []
+                 x = command['args'][0]
+                 y = command['args'][1]
+                 z = command['args'][2]
+                 r0 = command['args'][3]
+                 r1 = command['args'][4]
+                 add_torus(tmp, x, y, z, r0, r1, step_3d)
+                 matrix_mult(stack[-1], tmp)
+                 if command['constants'] == None:
+                    draw_polygons(tmp, screen, zbuffer, view, ambient, light, symbols, reflect)
+                 else:
+                     color_choice = command['constants']
+                     draw_polygons(tmp, screen, zbuffer, view, ambient, light, symbols, color_choice)
+                 tmp = []
          elif actual_command == "constants":
         
          elif actual_command == "line":
