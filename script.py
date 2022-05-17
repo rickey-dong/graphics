@@ -130,6 +130,7 @@ def run(filename):
                 tmp = []
         elif actual_command == "constants":
             # don't need to do anything
+            pass
         elif actual_command == "line":
             tmp = []
             x0 = command['args'][0]
