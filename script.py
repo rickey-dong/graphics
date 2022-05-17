@@ -146,7 +146,7 @@ def run(filename):
             file_name = command['args'][0]
             save_extension(screen, file_name)
          elif actual_command == "display":
-
+             display(screen)
 # HELLO
 # {'shiny_purple': ['constants', {'red': [0.3, 0.2, 0.8], 'green': [0.3, 0.0, 0.0], 'blue': [0.3, 0.2, 0.8]}], 'shiny_teal': ['constants', {'red': [0.3, 0.0, 0.0], 'green': [0.3, 0.2, 0.8], 'blue': [0.3, 0.2, 0.8]}], 'dull_yellow': ['constants', {'red': [0.3, 0.8, 0.2], 'green': [0.3, 0.8, 0.2], 'blue': [0.0, 0.0, 0.0]}], '.white': ['constants', {'red': [0.2, 0.5, 0.5], 'green': [0.2, 0.5, 0.5], 'blue': [0.2, 0.5, 0.5]}]}
 # HEY
