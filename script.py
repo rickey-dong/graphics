@@ -96,7 +96,8 @@ def run(filename):
                  if command['constants'] == None:
                     draw_polygons(tmp, screen, zbuffer, view, ambient, light, symbols, reflect)
                  else:
-                
+                     color_choice = command['constants']
+                     draw_polygons(tmp, screen, zbuffer, view, ambient, light, symbols, color_choice)
                  tmp = []
              elif actual_command == "sphere":
                  tmp = []
