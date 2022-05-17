@@ -143,7 +143,8 @@ def run(filename):
              draw_lines(stack[-1], screen, color)
              tmp = []
          elif actual_command == "save":
-            
+            file_name = command['args'][0]
+            save_extension(screen, file_name)
          elif actual_command == "display":
 
 # HELLO
