@@ -45,11 +45,7 @@ def run(filename):
                           'green': [0.2, 0.5, 0.5],
                           'blue': [0.2, 0.5, 0.5]}]
     reflect = '.white'
-    print("HELLO")
-    print(symbols)
-    print("HEY")
     for command in commands:
-        print(command)
         actual_command = command['op']
         if actual_command == "push":
             copy_of_current_top = [row[:] for row in stack[-1]]
