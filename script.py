@@ -131,7 +131,17 @@ def run(filename):
          elif actual_command == "constants":
              # don't need to do anything
          elif actual_command == "line":
-        
+             tmp = []
+             x0 = command['args'][0]
+             y0 = command['args'][1]
+             z0 = command['args'][2]
+             x1 = command['args'][3]
+             y1 = command['args'][4]
+             z1 = command['args'][5]
+             add_edge(tmp, x0, y0, z0, x1, y1, z1)
+             matrix_mult(tmp, stack[-1])
+             draw_lines(stack[-1], screen, color)
+             tmp = []
          elif actual_command == "save":
             
          elif actual_command == "display":
