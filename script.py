@@ -129,7 +129,7 @@ def run(filename):
                      draw_polygons(tmp, screen, zbuffer, view, ambient, light, symbols, color_choice)
                  tmp = []
          elif actual_command == "constants":
-        
+             # don't need to do anything
          elif actual_command == "line":
         
          elif actual_command == "save":
