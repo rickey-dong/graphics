@@ -66,7 +66,7 @@ def run(filename):
                 stack[-1] = [row[:] for row in t]
             elif actual_command == "rotate":
                 direction = command['args'][0]
-                theta = command['args'][1]
+                theta = command['args'][1] * (math.pi / 180)
                 if direction == "x":
                     t = make_rotX(theta)
                 elif direction == "y":
