@@ -39,6 +39,8 @@ def first_pass( commands ):
     if frames_found and not basename_found:
         name = 'default_animation_name'
         print("No name found. Using default name 'default_animation_name'")
+    
+    num_frames = int(num_frames)
 
     return (name, num_frames)
 
