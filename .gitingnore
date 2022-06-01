@@ -1,11 +1,3 @@
-__pycache__/
-face
-parser.out
-parsetab.py
-ply/__pycache__/__init__.cpython-38.pyc
-ply/__pycache__/lex.cpython-38.pyc
-ply/__pycache__/yacc.cpython-38.pyc
-
 # images
 *.ppm
 *.png
@@ -14,7 +6,7 @@ ply/__pycache__/yacc.cpython-38.pyc
 
 # python stuff
 *.pyc
-__pycache__/
+__pycache__
 
 # Prerequisites
 *.d
@@ -61,7 +53,6 @@ __pycache__/
 *.pdb
 
 # Kernel Module Compile Results
-*.mod*
 *.cmd
 .tmp_versions/
 modules.order
