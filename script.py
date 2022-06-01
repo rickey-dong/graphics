@@ -75,7 +75,15 @@ def first_pass( commands ):
 
 def second_pass( commands, num_frames ):
     frames = [ {} for i in range(num_frames) ]
+    for command in commands:
+        if command['op'] == 'vary':
+            start_index = command['args'][0]
+            end_index = command['args'][1]
+            step_size = (command['args'][3] - command['args'][2]) / (command['args'][1] - command['args'][0])
+            frames[start_index][command['knob']] = command['args'][2]
 
+            while start_index <= end_index:
+                start_index += 1
     return frames
 
 
