@@ -19,9 +19,26 @@ from draw import *
   with the name being used.
   ==================== """
 def first_pass( commands ):
+    frames_found = False
+    basename_found = False
+    vary_found = False
 
-    name = ''
-    num_frames = 1
+    for command in commands:
+        if command['op'] == 'frames':
+            frames_found = True
+            num_frames = command['args'][0]
+        elif command['op'] == 'basename':
+            basename_found = True
+            name = command['args'][0]
+        elif command['op'] == 'vary':
+            vary_found = True
+    
+    if vary_found and not frames_found:
+        exit()
+    
+    if frames_found and not basename_found:
+        name = 'default_animation_name'
+        print("No name found. Using default name 'default_animation_name'")
 
     return (name, num_frames)
 
