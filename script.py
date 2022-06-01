@@ -61,6 +61,18 @@ def first_pass( commands ):
   dictionary corresponding to the given knob with the
   appropirate value.
   ===================="""
+# {'op': 'frames', 'args': [50.0]}
+# {'op': 'basename', 'args': ['simple_50']}
+# {'op': 'push', 'args': None}
+# {'op': 'move', 'args': [250.0, 250.0, 0.0], 'knob': None}
+# {'op': 'scale', 'args': [2.0, 2.0, 2.0], 'knob': 'bigenator'}
+# {'op': 'rotate', 'args': ['y', 360.0], 'knob': 'spinny'}
+# {'op': 'rotate', 'args': ['z', 360.0], 'knob': 'spinny'}
+# {'op': 'torus', 'constants': None, 'cs': None, 'args': [0.0, 0.0, 0.0, 75.0, 125.0]}
+# {'op': 'vary', 'args': [0.0, 49.0, 0.0, 1.0], 'knob': 'spinny'}
+# {'op': 'vary', 'args': [0.0, 24.0, 0.0, 1.0], 'knob': 'bigenator'}
+# {'op': 'vary', 'args': [25.0, 49.0, 1.0, 0.0], 'knob': 'bigenator'}
+
 def second_pass( commands, num_frames ):
     frames = [ {} for i in range(num_frames) ]
 
