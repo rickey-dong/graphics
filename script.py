@@ -122,26 +122,28 @@ def run(filename):
 
     (name, num_frames) = first_pass(commands)
     frames = second_pass(commands, num_frames)
+    current_frame = 0
+    while current_frame < len(num_frames):
+        # print("Creating frame " + str(current_frame))
+        tmp = new_matrix()
+        ident( tmp )
 
-
-    tmp = new_matrix()
-    ident( tmp )
-
-    stack = [ [x[:] for x in tmp] ]
-    screen = new_screen()
-    zbuffer = new_zbuffer()
-    tmp = []
-    step_3d = 100
-    consts = ''
-    coords = []
-    coords1 = []
-
-    for command in commands:
-        print(command)
-        c = command['op']
-        args = command['args']
-        knob_value = 1
-        if num_frames == 1:
+        stack = [ [x[:] for x in tmp] ]
+        screen = new_screen()
+        zbuffer = new_zbuffer()
+        tmp = []
+        step_3d = 100
+        consts = ''
+        coords = []
+        coords1 = []
+        if len(num_frames) > 1:
+            for knob_key in frames[current_frame]:
+                symbols[knob_key]
+        for command in commands:
+            print(command)
+            c = command['op']
+            args = command['args']
+            knob_value = 1
             if c == 'box':
                 if command['constants']:
                     reflect = command['constants']
@@ -206,5 +208,4 @@ def run(filename):
             elif c == 'save':
                 save_extension(screen, args[0])
             # end operation loop
-        else:
-            
+        current_frame += 1
