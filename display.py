@@ -12,7 +12,7 @@ RED = 0
 GREEN = 1
 BLUE = 2
 
-DEFAULT_COLOR = [255, 255, 255]
+DEFAULT_COLOR = [0, 0, 0]
 
 def new_screen( width = XRES, height = YRES ):
     screen = []
@@ -101,4 +101,4 @@ def make_animation( name ):
     images = []
     for filename in filenames:
         images.append(imageio.imread(filename))
-    imageio.mimsave(name+".gif", images, fps=30)
+    imageio.mimsave(name+".gif", images, fps=60)
