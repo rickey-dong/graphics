@@ -123,7 +123,7 @@ def run(filename):
     (name, num_frames) = first_pass(commands)
     frames = second_pass(commands, num_frames)
     current_frame = 0
-    while current_frame < len(num_frames):
+    while current_frame < num_frames:
         # print("Creating frame " + str(current_frame))
         tmp = new_matrix()
         ident( tmp )
