@@ -214,5 +214,6 @@ def run(filename):
             elif c == 'save':
                 save_extension(screen, args[0])
             # end operation loop
-        save_extension(screen, "outputs/"+name+f"%03d"%current_frame)
+        save_extension(screen, "anim/"+name+f"%03d"%current_frame)
         current_frame += 1
+    make_animation(name)
