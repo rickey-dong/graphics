@@ -136,7 +136,7 @@ def run(filename):
         consts = ''
         coords = []
         coords1 = []
-        if len(num_frames) > 1:
+        if num_frames > 1:
             for knob_key in frames[current_frame]:
                 symbols[knob_key].append(frames[current_frame][knob_key])
         for command in commands:
