@@ -140,7 +140,6 @@ def run(filename):
             for knob_key in frames[current_frame]:
                 symbols[knob_key].append(frames[current_frame][knob_key])
         for command in commands:
-            print(command)
             c = command['op']
             args = command['args']
             knob_value = 1
