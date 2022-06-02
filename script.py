@@ -138,7 +138,7 @@ def run(filename):
         coords1 = []
         if len(num_frames) > 1:
             for knob_key in frames[current_frame]:
-                symbols[knob_key]
+                symbols[knob_key].append(frames[current_frame][knob_key])
         for command in commands:
             print(command)
             c = command['op']
@@ -179,17 +179,23 @@ def run(filename):
                 draw_lines(tmp, screen, zbuffer, color)
                 tmp = []
             elif c == 'move':
-                tmp = make_translate(args[0], args[1], args[2])
+                if command['knob'] is not None:
+                    knob_value = symbols[command['knob']][-1]
+                tmp = make_translate(args[0]*knob_value, args[1]*knob_value, args[2]*knob_value)
                 matrix_mult(stack[-1], tmp)
                 stack[-1] = [x[:] for x in tmp]
                 tmp = []
             elif c == 'scale':
-                tmp = make_scale(args[0], args[1], args[2])
+                if command['knob'] is not None:
+                    knob_value = symbols[command['knob']][-1]
+                tmp = make_scale(args[0]*knob_value, args[1]*knob_value, args[2]*knob_value)
                 matrix_mult(stack[-1], tmp)
                 stack[-1] = [x[:] for x in tmp]
                 tmp = []
             elif c == 'rotate':
-                theta = args[1] * (math.pi/180)
+                if command['knob'] is not None:
+                    knob_value = symbols[command['knob']][-1]
+                theta = args[1] * (math.pi/180) * knob_value
                 if args[0] == 'x':
                     tmp = make_rotX(theta)
                 elif args[0] == 'y':
