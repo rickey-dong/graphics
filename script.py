@@ -83,7 +83,8 @@ def second_pass( commands, num_frames ):
             frames[start_index][command['knob']] = command['args'][2]
             while start_index <= end_index:
                 start_index += 1
-                frames[start_index][command['knob']] = frames[start_index-1][command['knob']] + step_size
+                if start_index <= end_index:
+                    frames[start_index][command['knob']] = frames[start_index-1][command['knob']] + step_size
     return frames
 
 
