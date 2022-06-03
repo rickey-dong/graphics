@@ -101,4 +101,4 @@ def make_animation( name ):
     images = []
     for filename in filenames:
         images.append(imageio.imread(filename))
-    imageio.mimsave(name+".gif", images, fps=60)
+    imageio.mimsave(name+".gif", images, fps=30)
