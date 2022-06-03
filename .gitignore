@@ -1,3 +1,6 @@
+anim/simple*
+parsetab.py
+
 # images
 *.ppm
 *.png
