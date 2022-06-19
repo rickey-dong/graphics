@@ -1,0 +1,18 @@
+shading phong
+push 
+move 250 500 0
+aa_line 0 0 0 250 -500 0
+aa_line 0 0 0 200 -500 0
+aa_line 0 0 0 150 -500 0
+aa_line 0 0 0 100 -500 0
+aa_line 0 0 0 50 -500 0
+line 0 0 0 -50 -500 0
+line 0 0 0 -100 -500 0
+line 0 0 0 -150 -500 0
+line 0 0 0 -200 -500 0
+line 0 0 0 -250 -500 0
+box 150 -50 0 50 50 50
+shading flat
+box -200 -50 0 50 50 50
+display
+save test.png
