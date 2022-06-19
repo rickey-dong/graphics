@@ -1,0 +1,62 @@
+push
+move
+250 400 0
+sphere
+0 0 0 80
+pop
+push
+move
+250 150 0
+sphere
+0 0 0 20
+pop
+push
+move
+230 130 0
+rotate
+y -20
+box
+-25 0 -25 50 90 50
+pop
+push
+move
+215 40 0
+rotate
+y -20
+box
+0 0 0 10 40 10
+push
+move
+50 0 0
+box
+0 0 0 10 40 10
+pop
+pop
+push
+move
+215 130 0
+rotate
+z -130
+rotate
+x -25
+box
+0 0 0 10 70 10
+pop
+push
+move
+265 130 0
+rotate
+z 30
+box
+0 0 0 10 45 10
+push
+move
+8 -40 10
+rotate
+z -60
+rotate
+x -35
+box
+0 0 0 10 45 10
+save
+disco.png
