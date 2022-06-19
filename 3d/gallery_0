@@ -1,0 +1,18 @@
+ident
+torus
+250 125 0 50 100
+rotate
+x 45
+apply
+ident
+sphere
+250 250 0 200
+rotate
+y 20
+apply
+sphere
+215 300 0 75
+sphere
+415 300 0 100
+save
+gallery0.png
